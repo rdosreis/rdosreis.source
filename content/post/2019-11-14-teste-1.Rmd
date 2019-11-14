@@ -1,0 +1,13 @@
+---
+title: Teste 1
+author: Rodrigo
+date: '2019-11-14'
+slug: teste-1
+categories:
+  - R
+tags:
+  - regression
+---
+
+Este é o meu primeiro post aqui no site e eu não poderia deixar de falar sobre regressão.
+Mas, como já é tarde, vou deixar para próximo post.
