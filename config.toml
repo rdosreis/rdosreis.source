@@ -32,11 +32,11 @@ publishDir = "../rdosreis.github.io"
     MathJaxCDN = "//cdnjs.cloudflare.com/ajax/libs"
     MathJaxVersion = "2.7.5"
 
-    # path to the favicon, under "static"
-    favicon = "favicon.ico"
+    # path to the FolderRicon, under "static"
+    FolderRicon = "FolderRicon.ico"
 
     [params.logo]
-    url = "logo.png"
+    url = "pvfc_logo.jpg"
     width = 50
     height = 50
     alt = "Logo"
