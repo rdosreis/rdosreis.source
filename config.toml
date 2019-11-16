@@ -11,17 +11,20 @@ publishDir = "../rdosreis.github.io"
     post = "/:year/:month/:day/:slug/"
 
 [[menu.main]]
-    name = "Sobre"
+    name = "sobre"
     url = "/about/"
 [[menu.main]]
-    name = "GitHub"
+    name = "github"
     url = "https://github.com/rdosreis"
 [[menu.main]]
-    name = "Twitter"
+    name = "lattes"
+    url = "http://lattes.cnpq.br/3867312117732056"
+[[menu.main]]
+    name = "twitter"
     url = "https://twitter.com/RodrigoSolve"
 
 [params]
-    description = "Website."
+    description = "website pessoal"
 
     # options for highlight.js (version, additional languages, and theme)
     highlightjsVersion = "9.12.0"
