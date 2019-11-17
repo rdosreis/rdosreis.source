@@ -11,3 +11,7 @@ Eu me formei __Bacharel em Estatística__ pelo [Departamento de Estatística] (h
 Os meus interesses de pesquisa são __Inferência causal em epidemiologia__, __Análise de mediação__, __Modelos de predição de risco__ e __Análise de sobrevivência__. Em estatística aplicada eu tenho interesse na __epidemiologia eo Diabetes Mellitus__.
 
 Eu sou um grande entusiasta do [R](https://www.r-project.org/)!
+
+Nascido em Porto Velho, morador de Porto Alegre, com uma passagem (estatisticamente) significante por Belo Horizonte!
+
+<img src="/./about_files/pvfc_logo.jpg" alt="" width="70%" class="center"/>
