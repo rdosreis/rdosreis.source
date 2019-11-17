@@ -1,6 +1,7 @@
 ---
 date: "2019-11-16"
 title: rodrigo citton p. dos reis
+disable_comments: true
 ---
 
 Desde __outubro de 2017__ eu sou Professor Assistente do [__Departamento de Estatística__] (https://www.ufrgs.br/ime/departamentos/estatistica/) e faço parte do [Corpo Docente](http://www.ufrgs.br/ppgepi/docentes-1/permanentes) do [__Programa de Pós Graduação em Epidemiologia__](http://www.ufrgs.br/ppgepi) da [__Universidade Federal do Rio Grande do sul__ (UFRGS)](http://www.ufrgs.br). Além disso, eu atuo como pesquisador no [__Estudo Longitudinal de Saúde do Adulto (ELSA-Brasil)__](http://www.elsa.org.br/).
