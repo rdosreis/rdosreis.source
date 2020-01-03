@@ -14,4 +14,6 @@ Eu sou um grande entusiasta do [R](https://www.r-project.org/)!
 
 Nascido em Porto Velho, morador de Porto Alegre, com uma passagem (estatisticamente) significante por Belo Horizonte!
 
+Sigo acreditando que a Terra é redonda!
+
 <img src="/./about_files/pvfc_logo.jpg" alt="" width="70%" class="center"/>
