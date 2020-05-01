@@ -1,0 +1,159 @@
+---
+title: mob plot
+author: rdosreis
+date: '2020-05-01'
+slug: mob-plot
+categories:
+  - visualização
+tags:
+  - covid-19
+---
+
+
+
+<p>No último mês, a <a href="https://about.google/">Google</a> vem disponibilizando relatórios sobre a <a href="https://www.google.com/covid19/mobility/">mobilidade das comunidades</a> com o intuito de fornecer informações sobre o que mudou em resposta às políticas destinadas a combater o COVID-19. Os relatórios traçam tendências de movimento ao longo do tempo por região geográfica, em diferentes categorias de lugares, como varejo e recreação, compras e farmácias, parques, estações de trânsito, locais de trabalho e residenciais.</p>
+<p>O relatório mais recente foi publicado hoje (01/05/2020). Vamos aproveitar que, junto do relatório, um arquivo <a href="https://www.google.com/covid19/mobility/data_documentation.html?hl=en">CSV</a> é disponibilizado, e vamos explorar algumas funções em <a href="https://www.r-project.org/">R</a> de manipulação de dados e construirmos um <strong>gráfico de mobilidade</strong> com o pacote <a href="https://ggplot2.tidyverse.org/">ggplot2</a> para a localidade do estado do Rio Grande do Sul.</p>
+<div id="carregando-o-arquivo-de-dados" class="section level2">
+<h2>Carregando o arquivo de dados</h2>
+<p>Uma vez que baixamos o arquivo de dados, vamos importá-lo para o <code>R</code>.</p>
+<pre class="r"><code>library(readr)
+
+mobilidade &lt;- read_csv(
+  here::here(&quot;data&quot;,
+             &quot;Global_Mobility_Report.csv&quot;))</code></pre>
+<p>Aqui utilizamos a função <code>read_csv</code> do pacote <code>readr</code> que retorna um objeto do tipo <code>tibble</code>, mas outras funções, tal como <code>read.table</code>, devem dar conta do recado! Além disso, utilizamos a função <code>here</code> do pacote de mesmo nome. Se você ainda não conhece a função <code>here</code> veja este <a href="https://www.tidyverse.org/blog/2017/12/workflow-vs-script/">post</a> sobre fluxo de trabalho orientado a projetos em <code>R</code>.</p>
+</div>
+<div id="conhecendo-os-dados" class="section level2">
+<h2>Conhecendo os dados</h2>
+<p>Existem várias formas de termos uma primeira visão dos dados. Uma delas é através da função <code>glimpse</code> do pacote <code>dplyr</code>.</p>
+<pre class="r"><code>library(dplyr)
+
+glimpse(mobilidade)</code></pre>
+<pre><code>## Rows: 284,489
+## Columns: 11
+## $ country_region_code                                &lt;chr&gt; &quot;AE&quot;, &quot;AE&quot;, &quot;AE&quot;...
+## $ country_region                                     &lt;chr&gt; &quot;United Arab Emi...
+## $ sub_region_1                                       &lt;chr&gt; NA, NA, NA, NA, ...
+## $ sub_region_2                                       &lt;lgl&gt; NA, NA, NA, NA, ...
+## $ date                                               &lt;date&gt; 2020-02-15, 202...
+## $ retail_and_recreation_percent_change_from_baseline &lt;dbl&gt; 0, 1, -1, -2, -2...
+## $ grocery_and_pharmacy_percent_change_from_baseline  &lt;dbl&gt; 4, 4, 1, 1, 0, 1...
+## $ parks_percent_change_from_baseline                 &lt;dbl&gt; 5, 4, 5, 5, 4, 6...
+## $ transit_stations_percent_change_from_baseline      &lt;dbl&gt; 0, 1, 1, 0, -1, ...
+## $ workplaces_percent_change_from_baseline            &lt;dbl&gt; 2, 2, 2, 2, 2, 1...
+## $ residential_percent_change_from_baseline           &lt;dbl&gt; 1, 1, 1, 1, 1, 1...</code></pre>
+<p>Esta função nos apresenta o número linhas e colunas do objeto, as colunas e a classe das mesmas, além de alguns valores das colunas.</p>
+</div>
+<div id="formatando-os-dados" class="section level2">
+<h2>Formatando os dados</h2>
+<p>O próximo passo é organizarmos os dados em um formato apropriado para as nossas análises. Neste sentido, vamos filtrar os dados referentes ao Rio Grande do Sul utilizando a função <code>filter</code> do pacote <code>dplyr</code>. Logo em seguida vamos “empilhar” os dados, fazendo com que os valores referentes as tendências de mobilidade fiquem armazenados em uma coluna, e o tipo/local de “mobilidade” fique armazenado em uma outra coluna. Para tal, utilizaremos a função <code>gather</code> do pacote <code>tidyr</code>.</p>
+<pre class="r"><code>library(tidyr)
+
+mobilidade &lt;- mobilidade %&gt;% 
+  filter(sub_region_1 == &quot;State of Rio Grande do Sul&quot;) %&gt;% 
+  select(-country_region_code, -country_region, -sub_region_1, -sub_region_2) %&gt;% 
+  gather(key = &quot;Tipo&quot;, value = &quot;Percentual&quot;, -date)</code></pre>
+<p>Note que antes de empilharmos os dados, mantivemos apenas as variáveis (colunas) que tínhamos interesse de analisarmos, utilizando a função <code>select</code>. Agora o novo objeto possui apenas três colunas:</p>
+<pre class="r"><code>mobilidade</code></pre>
+<pre><code>## # A tibble: 432 x 3
+##    date       Tipo                                               Percentual
+##    &lt;date&gt;     &lt;chr&gt;                                                   &lt;dbl&gt;
+##  1 2020-02-15 retail_and_recreation_percent_change_from_baseline          4
+##  2 2020-02-16 retail_and_recreation_percent_change_from_baseline         -2
+##  3 2020-02-17 retail_and_recreation_percent_change_from_baseline         -2
+##  4 2020-02-18 retail_and_recreation_percent_change_from_baseline         -3
+##  5 2020-02-19 retail_and_recreation_percent_change_from_baseline          1
+##  6 2020-02-20 retail_and_recreation_percent_change_from_baseline          1
+##  7 2020-02-21 retail_and_recreation_percent_change_from_baseline          3
+##  8 2020-02-22 retail_and_recreation_percent_change_from_baseline         -3
+##  9 2020-02-23 retail_and_recreation_percent_change_from_baseline          4
+## 10 2020-02-24 retail_and_recreation_percent_change_from_baseline        -16
+## # ... with 422 more rows</code></pre>
+<p>Antes de começarmos a construir o nosso gráfico, vamos formatar a variável <code>Tipo</code>:</p>
+<pre class="r"><code>mobilidade$Tipo &lt;- factor(mobilidade$Tipo,
+                          labels = c(&quot;Mercearia e farmácia&quot;,
+                                     &quot;Parques&quot;,
+                                     &quot;Residencial&quot;,
+                                     &quot;Varejo e recreação&quot;,
+                                     &quot;Estações de trânsito&quot;,
+                                     &quot;Locais de trabalho&quot;))</code></pre>
+</div>
+<div id="os-gráficos-de-mobilidade" class="section level2">
+<h2>O(s) gráfico(s) de mobilidade</h2>
+<p>Vamos construir um <strong>gráfico de linhas</strong> das <em>tendências de mobilidade</em> pelo <em>tempo</em>. Utilizaremos o pacote <code>ggplot2</code>. Se <strong>você ainda não conhece</strong> o pacote <code>ggplot2</code>, não deixe de conferir o material do minicurso <a href="https://datathon-ufrgs.github.io/Pintando_e_Bordando_no_R/">Pintando e Bordando no R</a> apresentado no <a href="https://www.ufrgs.br/datathon/">1º Datathon da UFRGS</a>.</p>
+<p>Começaremos com um gráfico simples.</p>
+<pre class="r"><code>library(ggplot2)
+
+p &lt;- ggplot(data = mobilidade,
+            mapping = aes(x = date, y = Percentual, colour = Tipo)) +
+  geom_line()
+
+p</code></pre>
+<p><img src="/post/2020-05-01-mob-plot_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p><strong>Nada mau!</strong> Mas, podemos melhorar com algumas modificações. Comecemos por uma outra apresentação (facetada) e aumentando a espessura das curvas.</p>
+<pre class="r"><code>p &lt;- ggplot(data = mobilidade,
+            mapping = aes(x = date, y = Percentual, colour = Tipo)) +
+  geom_line(size = 1) +
+  facet_wrap(~ Tipo) +
+  theme(legend.position = &quot;none&quot;)
+
+p</code></pre>
+<p><img src="/post/2020-05-01-mob-plot_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p><strong>Melhor?</strong> Estamos quase lá! Agora vamos vamos arrumar aqueles pequenos detalhes que fazem toda a diferença: rótulos dos eixos, formato das datas, símbolo de percentual no eixo <span class="math inline">\(y\)</span> e uma paleta de cores diferente da padrão.</p>
+<pre class="r"><code>p &lt;- ggplot(data = mobilidade,
+            mapping = aes(x = date, y = Percentual, colour = Tipo)) +
+  geom_line(size = 1) +
+  scale_color_brewer(palette = &quot;Set2&quot;) +
+  scale_y_continuous(labels = function(x) paste0(x, &quot;%&quot;)) +
+  scale_x_date(labels = scales::date_format(&quot;%d %b&quot;)) +
+  facet_wrap(~ Tipo) +
+  theme(legend.position = &quot;none&quot;,
+        axis.text.x = element_text(angle = 45, hjust = 1)) +
+  labs(x = &quot;Tempo em dias&quot;,
+       title = &quot;Rio Grande do Sul&quot;,
+       caption = &quot;Fonte: Google Mobility (01/05/2020)&quot;)
+
+p</code></pre>
+<p><img src="/post/2020-05-01-mob-plot_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p>Um outro detalhe que faz toda a diferença é inclusão de um preenchimento entre as curvas de mobilidade e o valor basal.</p>
+<pre class="r"><code>p &lt;- ggplot(data = mobilidade,
+            mapping = aes(x = date, y = Percentual, colour = Tipo)) +
+  geom_line(size = 1) +
+  geom_area(mapping = aes(fill = Tipo), alpha = 0.3) +
+  scale_color_brewer(palette = &quot;Set2&quot;) +
+  scale_fill_brewer(palette = &quot;Set2&quot;) +
+  scale_y_continuous(labels = function(x) paste0(x, &quot;%&quot;)) +
+  scale_x_date(labels = scales::date_format(&quot;%d %b&quot;)) +
+  facet_wrap(~ Tipo) +
+  theme(legend.position = &quot;none&quot;,
+        axis.text.x = element_text(angle = 45, hjust = 1)) +
+  labs(x = &quot;Tempo em dias&quot;,
+       title = &quot;Rio Grande do Sul&quot;,
+       caption = &quot;Fonte: Google Mobility (01/05/2020)&quot;)
+
+p</code></pre>
+<p><img src="/post/2020-05-01-mob-plot_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p><strong>Pronto!</strong> Temos um gráfico de mobilidade! Infelizmente as conclusões não são muito animadoras. As curvas de tendência de mobilidade no estado do Rio Grande do Sul indicam um retorno ao valor basal (mobilidade pré-pandemia do COVID-19). Isso em conjunto com outros fatores (ausência de medidas de teste, isolamento e rastreio dos contatos dos infectados) podem resultar em um aumento acelerado dos casos de COVID-19. Nos mantenhamos alertas e avaliando os dados.</p>
+<p>Você pode gerar gráficos para outras localidades do Brasil e do mundo! Experimente também outros temas do <code>ggplot2</code> ou do pacote <code>ggthemes</code>.</p>
+<pre class="r"><code>library(ggthemes)
+
+p + theme_wsj() +
+   theme(legend.position = &quot;none&quot;,
+        axis.text.x = element_text(angle = 45, hjust = 1))</code></pre>
+<p><img src="/post/2020-05-01-mob-plot_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<pre class="r"><code>library(ggthemes)
+
+p + theme_fivethirtyeight() +
+   theme(legend.position = &quot;none&quot;,
+        axis.text.x = element_text(angle = 45, hjust = 1))</code></pre>
+<p><img src="/post/2020-05-01-mob-plot_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p>Tem até estilo <strong>“Old is cool”</strong>.</p>
+<pre class="r"><code>library(ggthemes)
+
+p + theme_excel() +
+   theme(legend.position = &quot;none&quot;,
+        axis.text.x = element_text(angle = 45, hjust = 1))</code></pre>
+<p><img src="/post/2020-05-01-mob-plot_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p>Depois é só salvar no formato e resolução que você desejar com a função <code>ggsave</code>!</p>
+<p>Se cuidem! Fiquem bem! E até a próxima!</p>
+</div>
