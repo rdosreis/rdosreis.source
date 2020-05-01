@@ -1,0 +1,192 @@
+---
+title: mob plot
+author: rdosreis
+date: '2020-05-01'
+slug: mob-plot
+categories:
+  - visualização
+tags:
+  - covid-19
+---
+
+No último mês, a [Google](https://about.google/) vem disponibilizando relatórios sobre a [mobilidade das comunidades](https://www.google.com/covid19/mobility/) com o intuito de fornecer informações sobre o que mudou em resposta às políticas destinadas a combater o COVID-19. Os relatórios traçam tendências de movimento ao longo do tempo por região geográfica, em diferentes categorias de lugares, como varejo e recreação, compras e farmácias, parques, estações de trânsito, locais de trabalho e residenciais.
+
+O relatório mais recente foi publicado hoje (`r format(Sys.Date(), "%x")`). Vamos aproveitar que, junto do relatório, um arquivo [CSV](https://www.google.com/covid19/mobility/data_documentation.html?hl=en) é disponibilizado, e vamos explorar algumas funções em [R](https://www.r-project.org/) de manipulação de dados e construirmos um __gráfico de mobilidade__ com o pacote [ggplot2](https://ggplot2.tidyverse.org/) para a localidade do estado do Rio Grande do Sul.
+
+## Carregando o arquivo de dados
+
+Uma vez que baixamos o arquivo de dados, vamos importá-lo para o `R`.
+
+```{r, echo=TRUE, warning=FALSE, message=FALSE}
+
+library(readr)
+
+mobilidade <- read_csv(
+  here::here("data",
+             "Global_Mobility_Report.csv"))
+
+```
+
+Aqui utilizamos a função `read_csv` do pacote `readr` que retorna um objeto do tipo `tibble`, mas outras funções, tal como `read.table`, devem dar conta do recado! Além disso, utilizamos a função `here` do pacote de mesmo nome. Se você ainda não conhece a função `here` veja este [post](https://www.tidyverse.org/blog/2017/12/workflow-vs-script/) sobre fluxo de trabalho orientado a projetos em `R`.
+
+## Conhecendo os dados
+
+Existem várias formas de termos uma primeira visão dos dados. Uma delas é através da função `glimpse` do pacote `dplyr`.
+
+```{r, echo=TRUE, warning=FALSE, message=FALSE}
+
+library(dplyr)
+
+glimpse(mobilidade)
+
+```
+
+Esta função nos apresenta o número linhas e colunas do objeto, as colunas e a classe das mesmas, além de alguns valores das colunas.
+
+## Formatando os dados
+
+O próximo passo é organizarmos os dados em um formato apropriado para as nossas análises. Neste sentido, vamos filtrar os dados referentes ao Rio Grande do Sul utilizando a função `filter` do pacote `dplyr`. Logo em seguida vamos "empilhar" os dados, fazendo com que os valores referentes as tendências de mobilidade fiquem armazenados em uma coluna, e o tipo/local de "mobilidade" fique armazenado em uma outra coluna. Para tal, utilizaremos a função `gather` do pacote `tidyr`.
+
+```{r, echo=TRUE, warning=FALSE, message=FALSE}
+library(tidyr)
+
+mobilidade <- mobilidade %>% 
+  filter(sub_region_1 == "State of Rio Grande do Sul") %>% 
+  select(-country_region_code, -country_region, -sub_region_1, -sub_region_2) %>% 
+  gather(key = "Tipo", value = "Percentual", -date)
+
+```
+
+Note que antes de empilharmos os dados, mantivemos apenas as variáveis (colunas) que tínhamos interesse de analisarmos, utilizando a função `select`. Agora o novo objeto possui apenas três colunas:
+
+```{r, echo=TRUE, warning=FALSE, message=FALSE}
+
+mobilidade
+
+```
+
+Antes de começarmos a construir o nosso gráfico, vamos formatar a variável `Tipo`:
+
+```{r, echo=TRUE, warning=FALSE, message=FALSE}
+
+mobilidade$Tipo <- factor(mobilidade$Tipo,
+                          labels = c("Mercearia e farmácia",
+                                     "Parques",
+                                     "Residencial",
+                                     "Varejo e recreação",
+                                     "Estações de trânsito",
+                                     "Locais de trabalho"))
+
+```
+
+## O(s) gráfico(s) de mobilidade
+
+Vamos construir um __gráfico de linhas__ das _tendências de mobilidade_ pelo _tempo_. Utilizaremos o pacote `ggplot2`. Se __você ainda não conhece__ o pacote `ggplot2`, não deixe de conferir o material do minicurso [Pintando e Bordando no R](https://datathon-ufrgs.github.io/Pintando_e_Bordando_no_R/) apresentado no [1º Datathon da UFRGS](https://www.ufrgs.br/datathon/).
+
+Começaremos com um gráfico simples.
+
+```{r, echo=TRUE, warning=FALSE, message=FALSE}
+
+library(ggplot2)
+
+p <- ggplot(data = mobilidade,
+            mapping = aes(x = date, y = Percentual, colour = Tipo)) +
+  geom_line()
+
+p
+```
+
+__Nada mau!__ Mas, podemos melhorar com algumas modificações. Comecemos por uma outra apresentação (facetada) e aumentando a espessura das curvas.
+
+```{r, echo=TRUE, warning=FALSE, message=FALSE}
+
+p <- ggplot(data = mobilidade,
+            mapping = aes(x = date, y = Percentual, colour = Tipo)) +
+  geom_line(size = 1) +
+  facet_wrap(~ Tipo) +
+  theme(legend.position = "none")
+
+p
+```
+
+__Melhor?__ Estamos quase lá! Agora vamos vamos arrumar aqueles pequenos detalhes que fazem toda a diferença: rótulos dos eixos, formato das datas, símbolo de percentual no eixo $y$ e uma paleta de cores diferente da padrão.
+
+```{r, echo=TRUE, warning=FALSE, message=FALSE}
+
+p <- ggplot(data = mobilidade,
+            mapping = aes(x = date, y = Percentual, colour = Tipo)) +
+  geom_line(size = 1) +
+  scale_color_brewer(palette = "Set2") +
+  scale_y_continuous(labels = function(x) paste0(x, "%")) +
+  scale_x_date(labels = scales::date_format("%d %b")) +
+  facet_wrap(~ Tipo) +
+  theme(legend.position = "none",
+        axis.text.x = element_text(angle = 45, hjust = 1)) +
+  labs(x = "Tempo em dias",
+       title = "Rio Grande do Sul",
+       caption = "Fonte: Google Mobility (01/05/2020)")
+
+p
+```
+
+Um outro detalhe que faz toda a diferença é inclusão de um preenchimento entre as curvas de mobilidade e o valor basal.
+
+```{r, echo=TRUE, warning=FALSE, message=FALSE}
+
+p <- ggplot(data = mobilidade,
+            mapping = aes(x = date, y = Percentual, colour = Tipo)) +
+  geom_line(size = 1) +
+  geom_area(mapping = aes(fill = Tipo), alpha = 0.3) +
+  scale_color_brewer(palette = "Set2") +
+  scale_fill_brewer(palette = "Set2") +
+  scale_y_continuous(labels = function(x) paste0(x, "%")) +
+  scale_x_date(labels = scales::date_format("%d %b")) +
+  facet_wrap(~ Tipo) +
+  theme(legend.position = "none",
+        axis.text.x = element_text(angle = 45, hjust = 1)) +
+  labs(x = "Tempo em dias",
+       title = "Rio Grande do Sul",
+       caption = "Fonte: Google Mobility (01/05/2020)")
+
+p
+```
+
+__Pronto!__ Temos um gráfico de mobilidade! Infelizmente as conclusões não são muito animadoras. As curvas de tendência de mobilidade no estado do Rio Grande do Sul indicam um retorno ao valor basal (mobilidade pré-pandemia do COVID-19). Isso em conjunto com outros fatores (ausência de medidas de teste, isolamento e rastreio dos contatos dos infectados) podem resultar em um aumento acelerado dos casos de COVID-19. Nos mantenhamos alertas e avaliando os dados.
+
+Você pode gerar gráficos para outras localidades do Brasil e do mundo! Experimente também outros temas do `ggplot2` ou do pacote `ggthemes`.
+
+```{r, echo=TRUE, warning=FALSE, message=FALSE}
+
+library(ggthemes)
+
+p + theme_wsj() +
+   theme(legend.position = "none",
+        axis.text.x = element_text(angle = 45, hjust = 1))
+
+```
+
+```{r, echo=TRUE, warning=FALSE, message=FALSE}
+
+library(ggthemes)
+
+p + theme_fivethirtyeight() +
+   theme(legend.position = "none",
+        axis.text.x = element_text(angle = 45, hjust = 1))
+
+```
+
+Tem até estilo __"Old is cool"__.
+
+```{r, echo=TRUE, warning=FALSE, message=FALSE}
+
+library(ggthemes)
+
+p + theme_excel() +
+   theme(legend.position = "none",
+        axis.text.x = element_text(angle = 45, hjust = 1))
+
+```
+
+Depois é só salvar no formato e resolução que você desejar com a função `ggsave`!
+
+Se cuidem! Fiquem bem! E até a próxima!
