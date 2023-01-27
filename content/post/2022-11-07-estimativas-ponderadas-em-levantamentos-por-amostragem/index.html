@@ -1,0 +1,102 @@
+---
+title: Estimativas ponderadas em levantamentos por amostragem
+author: Rodrigo Citton P. dos Reis
+date: '2022-11-08'
+slug: estimativas-ponderadas-em-levantamentos-por-amostragem
+categories:
+  - blog
+tags:
+  - pesos de amostragem
+  - estimativas ponderadas
+  - PNS
+---
+
+<script src="{{< blogdown/postref >}}index_files/header-attrs/header-attrs.js"></script>
+
+
+<p>No último dia 21 de outubro, tive o prazer de participar da <a href="https://www.even3.com.br/semest-xxvii/">XXVII Semana da Estatística</a> da Universidade Federal do Pará, apresentando o seminário <strong>“Estimativas ponderadas em levantamentos por amostragem: aplicações na Pesquisa Nacional de Saúde”</strong>. Agradeço à Comissão Organizadora do evento, em especial o <a href="http://lattes.cnpq.br/4901143336191269">Professor Paulo Cerqueira dos Santos Junior</a> pelo convite, e à audiência de alunos e alunas do curso de <a href="https://www.faest.icen.ufpa.br/">Estatística da UFPA</a>.</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/OgDW7R7c-7s" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
+<p>Nesta ocasião pude falar rapidamente de alguns trabalhos que participei sobre a <strong>Epidemiologia do Diabetes</strong> utilzando dados da <a href="https://www.pns.icict.fiocruz.br/">Pesquisa Nacional de Saúde</a> (PNS). A PNS é um inquérito domiciliar populacional com abrangência nacional e utilizou um delineamento de <strong>amostragem probabilística</strong> por conglomerados em três estágios de seleção e estratificação das unidades primárias de amostragem (UPAs).</p>
+<p>Neste breve <em>post</em>, gostaria de apresentar a intuição e o significado de alguns <strong>conceitos de amostragem</strong> que foram abordados no seminário.</p>
+<div id="população-finita-e-inferência-baseada-no-delineamento" class="section level2">
+<h2>População finita e inferência baseada no delineamento</h2>
+<p>Uma distinção importante entre os procedimentos de inferência é aquela que envolve os conceitos de <strong>inferência baseada no modelo</strong> e <strong>inferência baseada no delineamento</strong>. A maior parte da análise estatística é baseada no modelo. Ou seja, uma certa amostra é suposta ser a realização de um dado <strong>processo</strong>. Este processo, por sua vez, é especificado por um <strong>modelo probabilístico</strong> (paramétrico ou não-paramétrico). As inferências são feitas com respeito aos parâmetros associados ao modelo probabilístico e as conclusões são generalizadas à outras situações que compartilham do mesmo processo gerador dos dados.</p>
+<p>Por outro lado, a análise de <strong>levantamentos por amostragem</strong> de <strong>planos complexos</strong><a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> é usualmente <strong>baseada no delineamento</strong>. Dada uma população específica, os valores dos dados são desconhecidos, porém, são considerados <strong>fixos</strong>. Uma vez que o mecanismo de seleção dos indivíduos dessa população, a <strong>amostra observada</strong> é aleatória<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>. Assim, as estimativas a partir da amostra são generalizadas para a população alvo especificada.</p>
+</div>
+<div id="probabilidades-de-amostragem-e-pesos-do-delineamento" class="section level2">
+<h2>Probabilidades de amostragem e pesos do delineamento</h2>
+</div>
+<div id="estimadores-de-expansão" class="section level2">
+<h2>Estimadores de expansão</h2>
+<ul>
+<li>Embora seja de interesse consideradar outros parâmetros populacionais, para introdução da notação, vamos focar no
+<span class="math display">\[
+t_y = \sum_{k\in U}{y_k},
+\]</span>
+em que <span class="math inline">\(y_k\)</span> denota o <span class="math inline">\(k\)</span>-ésimo valor da característica de interesse <span class="math inline">\(y\)</span>, <span class="math inline">\(k = 1, \ldots, N\)</span>.</li>
+<li>Vamos considerar estimadores de <span class="math inline">\(t_y\)</span> da forma</li>
+</ul>
+<p><span class="math display">\[\begin{equation}
+\label{eq:estimador_total_ponderado}
+\hat{t}_y = \sum_{k\in S}{w_ky_k},
+\end{equation}\]</span>
+em que <span class="math inline">\(w_k\)</span> é um associado à <span class="math inline">\(k\)</span>-ésima unidade.</p>
+<ul>
+<li><p>O peso <span class="math inline">\(w_k\)</span> pode variar entre as unidades. O conjunto <span class="math inline">\(\{w_k; k \in S\}\)</span> é chamado de (ou sistema de ponderação) <span class="citation">[@haziza_construction_2017]</span>.</p></li>
+<li><p>Note que outros parâmetros podem ser definidos como uma função do total populacional.</p>
+<ul>
+<li>No caso da média, <span class="math inline">\(\overline{y} = t_y/N\)</span> e um estimador do tipo pode ser utilizado com <span class="math inline">\(\eqref{eq:estimador_total_ponderado}\)</span>. Teríamos o seguinte estimador para a média populacional: <span class="math inline">\(\widehat{\overline{y}} = \hat{t}_y/N = (1/N)\sum_{k\in S}{w_ky_k}\)</span>; se <span class="math inline">\(w_k = N/n\)</span> <strong>(amostragem aleatória simples sem reposição)</strong>, então <span class="math inline">\(\widehat{\overline{y}} = (1/N)\sum_{k\in S}{(N/n)y_k} = (1/n)\sum_{k\in S}{y_k}\)</span>.</li>
+</ul></li>
+<li><p>Além disso, na prática, estaremos interessados em mais de uma característica <span class="math inline">\(y\)</span> ao mesmo tempo.</p></li>
+</ul>
+<ul>
+<li><p>Um <span class="math inline">\(\{d_k; k \in S\}\)</span> é obtido considerando <span class="math inline">\(d_k = 1/\pi_k\)</span>, ou seja, o peso da unidade <span class="math inline">\(k\)</span> é definido como o na amostra <span class="math inline">\(S\)</span>.</p></li>
+<li><p>Este sistema de pesos básicos também é conhecido .</p></li>
+<li><p>Utilizando o sitema de pesos básicos no estimador <span class="math inline">\(\eqref{eq:estimador_total_ponderado}\)</span>, obtém-se o conhecido (ou <span class="math inline">\(\pi\)</span>-estimador) <span class="citation">[@horvitz_generalization_1952]</span> para <span class="math inline">\(t_y\)</span>:</p></li>
+</ul>
+<p><span class="math display">\[\begin{equation}
+\label{eq:estimador_horvitz_thompson}
+\hat{t}_{y,\pi} = \sum_{k\in S}{d_ky_k} = \sum_{k\in S}{\frac{y_k}{\pi_k}}.
+\end{equation}\]</span></p>
+<p>Note que o estimador de expansão <span class="math inline">\(\eqref{eq:estimador_horvitz_thompson}\)</span> é não enviesado e sua variância estimada é dada por:</p>
+<p><span class="math display">\[\begin{equation}
+\label{eq:var_estimador_ht}
+\widehat{\mbox{Var}}(\hat{t}_{y,\pi}) = \sum_{k\in S}{\sum_{\ell\in S}{\left[\frac{1}{\pi_{k\ell}}\left(\frac{\pi_{k\ell}}{\pi_{k}\pi_{\ell}} - 1\right)y_ky_{\ell}\right]}},
+\end{equation}\]</span>
+em que <span class="math inline">\(\pi_{k\ell} = \Pr(I_k = 1, I_{\ell} = 1) &gt; 0\)</span> para todo o par de unidade <span class="math inline">\((k, \ell) \in U\)</span>.</p>
+<div id="frações-de-amostragem-e-expansão-da-amostra" class="section level3">
+<h3>Frações de amostragem e expansão da amostra</h3>
+</div>
+<div id="propriedades" class="section level3">
+<h3>Propriedades</h3>
+</div>
+</div>
+<div id="calibração-dos-pesos" class="section level2">
+<h2>Calibração dos pesos</h2>
+<ul>
+<li>É muito comum a construção de .</li>
+<li>Técnicas de calibração realizam ajustes dos pesos básicos e são utilizadas para:
+<ol style="list-style-type: lower-roman">
+<li>forçar a consistência de certas estimativas do levantamento por amostragem com quantidades conhecidas da população;</li>
+<li>reduzir erros de não amostragem, como erros de não resposta e erros de cobertura;</li>
+<li>melhorar a precisão das estimativas.</li>
+</ol></li>
+<li>Os métodos de pós-estratificação e são alguns dos métodos mais utilizados em calibração de pesos de amostragem.</li>
+</ul>
+</div>
+<div id="alguns-links" class="section level2">
+<h2>Alguns links</h2>
+<ul>
+<li><a href="https://drive.google.com/file/d/1YNAdoABvyWxmEGD2gkGf7kMjsR1jlEDl/view?usp=share_link">Slides da apresentação</a></li>
+<li>Artigo <a href="https://doi.org/10.3390/jcm10153428">“Control of Glucose, Blood Pressure, and Cholesterol among Adults with Diabetes: The Brazilian National Health Survey”</a></li>
+<li>Artigo <a href="http://dx.doi.org/10.1590/0102-311X00149321">“Evolução do diabetes mellitus no Brasil: dados de prevalência da Pesquisa Nacional de Saúde de 2013 e 2019”</a></li>
+</ul>
+</div>
+<div class="footnotes footnotes-end-of-document">
+<hr />
+<ol>
+<li id="fn1"><p>Por plano de amostragem entendemos a distribuição de probabilidade associada ao mecanismo de seleção de unidades de uma população alvo para a amostra a ser coletada. A expressão plano de amostragem complexo geralmente é empregada para designar uma distribuição de probabilidade de seleção associada a um delineamento com múltiplos estágios de seleção da amostra, em que cada estágio pode assumir um tipo de esquema de amostragem “básico” (por exemplo, amostragem aleatória simples, amostragem estratificada e/ou amostragem por conglomerados).<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>Alguém poderia considerar a amostra observada como fixa. No entanto, ao dizer que amostra observada é aleatória, quero salientar que esta é resultado de um mecanismo de seleção aleatório.<a href="#fnref2" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
