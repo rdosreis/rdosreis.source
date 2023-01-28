@@ -1,0 +1,27 @@
+---
+title: GBDraweR 01
+author: Rodrigo Citton P. dos Reis
+date: '2023-01-27'
+slug: gbdrawer-01
+categories:
+  - blog
+tags:
+  - GBD
+  - plot
+---
+
+
+
+<p>No começo deste ano, fui convidado para participar de uma disciplina no <a href="https://www.ufrgs.br/ppgepi/">Programa de Pós-Graduação em Epidemiologia</a> da UFRGS como aluno! Trata-se da disciplina <em>“Descriptive Epidemiology of Diseases and Injuries: the Global Burden of Disease Study”</em>, ministrada pelos professores <a href="http://lattes.cnpq.br/4862166496983255">Bruce Duncan</a>, <a href="http://lattes.cnpq.br/1447301799959291">Bárbara Goulart</a> e <a href="https://depts.washington.edu/healthms/people/ewerton-cousin/">Ewerton Cousin</a>, e conta com a participação de professores e pesquisadores do estudo GBD e <em>GBD Brazil Network</em>.</p>
+<p>Este tem sido o meu primeiro contato mais aprofundado com os dados do GBD. Ao longo do semestre, pretendo realizar uma série de <em>posts</em> sobre o que vou aprendendo relacionado ao <strong>estudo GBD</strong>, às <strong>métricas</strong> utilizadas no GBD e aos <strong>modelos estatísticos</strong> empregados nas análises do GBD. Mas, o principal tema destes <em>posts</em> será a utilização do <code>R</code> para construir gráficos complementares aqueles disponibilizados pelo GBD.</p>
+<div id="o-que-é-o-gbd" class="section level2">
+<h2>O que é o GBD?</h2>
+<p>Segundo o próprio site do <a href="https://www.healthdata.org/gbd/2019">GBD</a>:</p>
+<blockquote>
+<p>“O <em>Global Burden of Disease</em> (GBD) é uma ferramenta que fornece um quadro abrangente de <strong>mortalidade e incapacidade</strong> em todos os <strong>países, tempo, idade e sexo</strong>”.</p>
+</blockquote>
+<p>Utilizando uma <a href="https://extranet.who.int/kobe_centre/en/what_we_do/health-emergencies/research-methods/sections-and-chapters/chapter2-3-disease-burden#:~:text=A%20burden%20of%20disease%20approach,that%20integrates%20mortality%20and%20disability.">abordagem de carga de doenças</a>, o GBD quantifica a perda de saúde de centenas de <strong>doenças, lesões e fatores de risco</strong>, para que os sistemas de saúde possam ser melhorados e as disparidades eliminadas.</p>
+<p>O <a href="https://www.healthdata.org/"><em>Institute for Health Metrics and Evaluation</em> (IHME)</a> da <a href="https://www.washington.edu/"><em>University of Washington</em></a> atua como centro coordenador do GBD. Pesquisadores individuais com especialidades em várias áreas temáticas também fazem parte de uma <a href="https://www.healthdata.org/gbd/call-for-collaborators">rede de colaboradores do estudo GBD</a>. <a href="https://www.healthdata.org/gbd/about/history">Atualizações das estimativas</a> são feitas periodicamente e diversos <a href="https://www.healthdata.org/gbd/publications">artigos e relatórios de políticas</a> vem sendo produzidos a partir dos achados do estudo GBD.</p>
+<p>Para produzir estimativas globais de mortalidade e incapacidade de tantas doenças, ao longo do tempo e para diferentes localidades, o GBD combina uma grande variedade de fontes e tipos de dados, tais como: censos e levantamentos por amostragem, registros vitais, autópsias verbais, registros de agravos, literatura científica, entre outros. Os diferentes conjuntos de dados utilizados pelo GBD são catalogados e a informação é compartilhada pelo <a href="https://ghdx.healthdata.org/"><em>Global Health Data Exchange</em> (GHDx)</a>.</p>
+<p>O estudo GBD também utiliza diversos métodos e modelos estatísticos para harmonizar os dados e obter estimativas (pontuais e intervalares) para diferentes métricas de mortalidade e incapacidade, tais como DALYs, YLLs, YLDs, HALE, expectativa de vida, entre outras. Ferramentas para a <a href="https://www.healthdata.org/gbd/data-visualizations">visualização de dados</a> são disponibilizadas pelo GBD para que pesquisadores e tomadores de decisão possam acompanhar as estimativas produzidas pelo estudo. Entre estas, destaca-se o <a href="https://vizhub.healthdata.org/gbd-compare/"><em>GBD Compare</em></a>, uma ferramenta interativa que produz uma variedade de gráficos e mapas.</p>
+</div>

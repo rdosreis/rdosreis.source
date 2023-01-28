@@ -1,0 +1,29 @@
+---
+title: GBDraweR 01
+author: Rodrigo Citton P. dos Reis
+date: '2023-01-27'
+slug: gbdrawer-01
+categories:
+  - blog
+tags:
+  - GBD
+  - plot
+---
+
+No começo deste ano, fui convidado para participar de uma disciplina no [Programa de Pós-Graduação em Epidemiologia](https://www.ufrgs.br/ppgepi/) da UFRGS como aluno! Trata-se da disciplina *"Descriptive Epidemiology of Diseases and Injuries: the Global Burden of Disease Study"*, ministrada pelos professores [Bruce Duncan](http://lattes.cnpq.br/4862166496983255), [Bárbara Goulart](http://lattes.cnpq.br/1447301799959291) e [Ewerton Cousin](https://depts.washington.edu/healthms/people/ewerton-cousin/), e conta com a participação de professores e pesquisadores do estudo GBD e *GBD Brazil Network*.
+
+Este tem sido o meu primeiro contato mais aprofundado com os dados do GBD. Ao longo do semestre, pretendo realizar uma série de *posts* sobre o que vou aprendendo relacionado ao **estudo GBD**, às **métricas** utilizadas no GBD e aos **modelos estatísticos** empregados nas análises do GBD. Mas, o principal tema destes *posts* será a utilização do `R` para construir gráficos complementares aqueles disponibilizados pelo GBD.
+
+## O que é o GBD?
+
+Segundo o próprio site do [GBD](https://www.healthdata.org/gbd/2019):
+
+> "O *Global Burden of Disease* (GBD) é uma ferramenta que fornece um quadro abrangente de **mortalidade e incapacidade** em todos os **países, tempo, idade e sexo**".
+
+Utilizando uma [abordagem de carga de doenças](https://extranet.who.int/kobe_centre/en/what_we_do/health-emergencies/research-methods/sections-and-chapters/chapter2-3-disease-burden#:~:text=A%20burden%20of%20disease%20approach,that%20integrates%20mortality%20and%20disability.), o GBD quantifica a perda de saúde de centenas de **doenças, lesões e fatores de risco**, para que os sistemas de saúde possam ser melhorados e as disparidades eliminadas. 
+
+O [*Institute for Health Metrics and Evaluation* (IHME)](https://www.healthdata.org/) da [*University of Washington*](https://www.washington.edu/) atua como centro coordenador do GBD. Pesquisadores individuais com especialidades em várias áreas temáticas também fazem parte de uma [rede de colaboradores do estudo GBD](https://www.healthdata.org/gbd/call-for-collaborators). [Atualizações das estimativas](https://www.healthdata.org/gbd/about/history) são feitas periodicamente e diversos [artigos e relatórios de políticas](https://www.healthdata.org/gbd/publications) vem sendo produzidos a partir dos achados do estudo GBD.
+
+Para produzir estimativas globais de mortalidade e incapacidade de tantas doenças, ao longo do tempo e para diferentes localidades, o GBD combina uma grande variedade de fontes e tipos de dados, tais como: censos e levantamentos por amostragem, registros vitais, autópsias verbais, registros de agravos, literatura científica, entre outros. Os diferentes conjuntos de dados utilizados pelo GBD são catalogados e a informação é compartilhada pelo [*Global Health Data Exchange* (GHDx)](https://ghdx.healthdata.org/).
+
+O estudo GBD também utiliza diversos métodos e modelos estatísticos para harmonizar os dados e obter estimativas (pontuais e intervalares) para diferentes métricas de mortalidade e incapacidade, tais como DALYs, YLLs, YLDs, HALE, expectativa de vida, entre outras. Ferramentas para a [visualização de dados](https://www.healthdata.org/gbd/data-visualizations) são disponibilizadas pelo GBD para que pesquisadores e tomadores de decisão possam acompanhar as estimativas produzidas pelo estudo. Entre estas, destaca-se o [*GBD Compare*](https://vizhub.healthdata.org/gbd-compare/), uma ferramenta interativa que produz uma variedade de gráficos e mapas.
