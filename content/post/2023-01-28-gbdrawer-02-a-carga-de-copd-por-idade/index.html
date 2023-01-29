@@ -1,0 +1,132 @@
+---
+title: GBDrawer 02 - A carga de COPD por idade
+author: Rodrigo Citton P. dos Reis
+date: '2023-01-28'
+slug: gbdrawer-02-a-carga-de-copd-por-idade
+categories:
+  - blog
+tags:
+  - GBD
+  - plot
+---
+
+
+
+<p>Em uma das primeiras aulas do curso <em>“Descriptive Epidemiology of Diseases and Injuries: the Global Burden of Disease Study”</em> (PPGEpi/UFRGS) foi discutido um exemplo a respeito da <strong>doença pulmonar obstrutiva crônica</strong> (<em>chronic obstructive pulmonary disease</em>, COPD). Neste <em>post</em>, vamos ver como construir um gráfico para apresentar a carga de COPD por faixa etária.</p>
+<div id="copd" class="section level2">
+<h2>COPD</h2>
+<p>A COPD é uma inflamação crônica dos pulmões que causa tosse, dificuldade respiratória, muco e chiado no peito. A COPD inclui enfisema e bronquite crônica.</p>
+</div>
+<div id="dalys" class="section level2">
+<h2>DALYs</h2>
+<p>Os <strong>anos de vida ajustados por incapacidade</strong> (<em>Disability‐adjusted life years</em>, DALYs) refletem de forma abrangente perdas de saúde fatais e não fatais e são definidos como a combinação de <strong>anos de vida perdidos</strong> (<em>years of life lost</em>, YLLs) e <strong>anos vividos com incapacidade</strong> (<em>years lived with disability</em>, YLDs)<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>. Os YLLs representam as perdas de saúde devido à morte prematura em comparação com a expectativa de vida padrão. Os YLDs são calculados multiplicando-se o número de pessoas vivendo com esse desfecho pelo <strong>peso da incapacidade</strong> que representava a magnitude da perda de saúde associada ao desfecho.</p>
+<p>Dessa forma, os DALYs expressam a carga de uma determinada doença. Em um <em>post</em> futuro, pretendo abordar a definição dos DALYs, YLLs, YLDs, expectativa de vida padrão, pesos de incapacidade e os dados envolvidos na estimativa destas quantidades populacionais.</p>
+</div>
+<div id="extraindo-os-dados" class="section level2">
+<h2>Extraindo os dados</h2>
+<p>Antes de construir o gráfico, precisamos ter acesso aos dados. Os dados sobre a carga global de COPD foram extraídos usando a ferramenta <em>GBD Results Tool</em> do <a href="http://ghdx.healthdata.org/gbd‐results‐tool">Global Health Data Exchange</a> do <strong>GBD 2019</strong>.</p>
+<p><img src="images/gbd_results_tela_inicial.png" style="width:60.0%;height:50.0%" /></p>
+<p>No primeiro acesso ao <em>GBD Results Tool</em> é necessário realizar um cadastro. Na aba <em>About</em> são disponibilizados manuais básicos para uso da ferramenta.</p>
+<p><img src="images/gbd_results_about.png" style="width:60.0%;height:50.0%" /></p>
+<p>Para este exemplo, a seguinte configuração foi especificada:</p>
+<p><img src="images/gbd_copd_2019.png" style="width:40.0%;height:50.0%" /></p>
+<p>O resultado da consulta pode ser visualizado na tela do GBD Results. Ao clicar no botão <em>Download</em> o usuário tem acesso ao arquivo de dados em <code>csv</code><a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>. Este arquivo será utilizado para a construção do gráfico.</p>
+</div>
+<div id="gráfico-de-dalys-por-idade" class="section level2">
+<h2>Gráfico de DALYs por idade</h2>
+<p>Uma vez que baixamos o arquivo de dados, vamos importá-lo para o <code>R</code>.</p>
+<pre class="r"><code>library(readr)
+
+gbd_copd &lt;- read_csv(file = here::here(&quot;data&quot;,
+                                &quot;IHME-GBD_2019_DATA-a45abb03-1.csv&quot;))</code></pre>
+<p>Aqui utilizamos a função <code>read_csv</code> do pacote <a href="https://readr.tidyverse.org/"><code>readr</code></a>. Além disso, utilizamos a função <code>here</code> do pacote de mesmo nome. Se você ainda não conhece a função <code>here</code> veja este <a href="https://www.tidyverse.org/blog/2017/12/workflow-vs-script/"><em>post</em></a> sobre fluxo de trabalho orientado a projetos em <code>R</code>.</p>
+<p>Veja que os dados estão no formato “longo”, pois os dados de YLLs, YLDs, DALYs, assim como sexo masculino, feminino e ambos os sexos encontra-se “empilhados”.</p>
+<pre class="r"><code>gbd_copd</code></pre>
+<pre><code>## # A tibble: 201 × 10
+##    measure           locat…¹ sex   age   cause metric  year    val  upper  lower
+##    &lt;chr&gt;             &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+##  1 YLDs (Years Live… Global  Male  0-6 … Chro… Number  2019     0      0      0 
+##  2 YLDs (Years Live… Global  Fema… 0-6 … Chro… Number  2019     0      0      0 
+##  3 YLDs (Years Live… Global  Both  0-6 … Chro… Number  2019     0      0      0 
+##  4 YLDs (Years Live… Global  Male  7-27… Chro… Number  2019     0      0      0 
+##  5 YLDs (Years Live… Global  Fema… 7-27… Chro… Number  2019     0      0      0 
+##  6 YLDs (Years Live… Global  Both  7-27… Chro… Number  2019     0      0      0 
+##  7 YLDs (Years Live… Global  Male  28-3… Chro… Number  2019   597.   756.   414.
+##  8 YLDs (Years Live… Global  Fema… 28-3… Chro… Number  2019   680.   854.   484.
+##  9 YLDs (Years Live… Global  Both  28-3… Chro… Number  2019  1277.  1591.   893.
+## 10 YLDs (Years Live… Global  Male  1-4 … Chro… Number  2019 14636. 18507. 10542.
+## # … with 191 more rows, and abbreviated variable name ¹​location</code></pre>
+<p>O próximo passo é formatar as variáveis de interesse. Isso vai facilitar o nosso trabalho final de construção do gráfico. Assim, vamos ordenar corretamente os níveis da variável <em>idade</em> (<code>age</code>) e atribuir os rótulos desejados.</p>
+<pre class="r"><code>gbd_copd$age &lt;- factor(
+  x = gbd_copd$age,
+  levels = unique(gbd_copd$age),
+  labels = c(
+    c(&quot;Early Neonatal&quot;, &quot;Late Neonatal&quot;, &quot;Post Neonatal&quot;),
+    unique(gbd_copd$age)[4:19],
+    paste(unique(gbd_copd$age)[20:22], &quot;years&quot;),
+    unique(gbd_copd$age)[23]
+  )
+)</code></pre>
+<p>Com o auxílio do pacote <a href="https://dplyr.tidyverse.org/"><code>dplyr</code></a>, vamos também aproveitar para transformar os nomes da variável <code>measure</code> em nomes mais curtos.</p>
+<pre class="r"><code>library(dplyr)
+
+gbd_copd &lt;- gbd_copd %&gt;% 
+  mutate(measure = case_when(
+    measure == &quot;YLDs (Years Lived with Disability)&quot; ~ &quot;YLDs&quot;,
+    measure == &quot;YLLs (Years of Life Lost)&quot; ~ &quot;YLLs&quot;,
+    measure ==&quot;DALYs (Disability-Adjusted Life Years)&quot; ~ &quot;DALYs&quot;)
+    )</code></pre>
+<div id="gráfico-de-barras-simples" class="section level3">
+<h3>Gráfico de barras simples</h3>
+<p>Neste primeiro gráfico, vamos apresentar a informação da carga global de COPD para ambos os sexos no ano de 2019 em número de DALYs. Assim, vamos filtrar os dados pelas variáveis <code>measure</code> e <code>sex</code>.</p>
+<pre class="r"><code>gbd_copd_daly_b &lt;- gbd_copd %&gt;% 
+  filter(measure == &quot;DALYs&quot;, sex == &quot;Both&quot;)</code></pre>
+<p>Para construir o <strong>gráfico de barras</strong> utilizaremos o pacote <code>ggplot2</code><a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>. Agora que já filtramos os dados de DALYs, vamos utilizar as variáveis <code>val</code> (os valores referentes ao número de DALYs) e <code>age</code>.</p>
+<pre class="r"><code>library(ggplot2)
+
+p1 &lt;- ggplot(data = gbd_copd_daly_b,
+             mapping = aes(x = age, y = val)) +
+  geom_bar(stat = &quot;identity&quot;) + 
+  labs(x = &quot;Age group&quot;, y = &quot;DALYs&quot;)
+p1</code></pre>
+<p><img src="staticunnamed-chunk-6-1.png" width="672" /></p>
+<p>Notamos que muitos aspectos do gráfico podem ser melhorados, tais como o <strong>tema</strong>, as <strong>cores</strong> e a <strong>largura</strong> das barras e os <strong>rótulos dos eixos</strong>.</p>
+<pre class="r"><code>p1 &lt;- ggplot(data = gbd_copd_daly_b,
+             mapping = aes(x = age, y = val)) +
+  geom_bar(stat = &quot;identity&quot;, width = 0.6, fill = &quot;#b19cd9&quot;) +
+  scale_y_continuous(breaks = c(0, 5000000, 10000000)) +
+  labs(x = &quot;Age group&quot;, y = &quot;DALYs&quot;) +
+  theme_bw() +
+  theme(
+    axis.text.x = element_text(hjust = 1,
+                               angle = 45,
+                               size = 8))
+p1</code></pre>
+<p><img src="staticunnamed-chunk-7-1.png" width="672" /></p>
+</div>
+<div id="gráfico-de-barras-com-barra-erro-incerteza" class="section level3">
+<h3>Gráfico de barras com barra erro (incerteza)</h3>
+<p>Os dados disponibilizados pelo GBD são estimativas de quantidades populacionais. Além das estimativas pontuais, o GBD também disponibiliza os limites de um <strong>intervalo de incerteza</strong><a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a> de 95% (variáveis <code>upper</code> e <code>lower</code> do objeto de dados). Vamos incorporar estes intervalos em nosso gráfico. Para isso, vamos acrescentar uma “camada” ao gráfico anterior.</p>
+<pre class="r"><code>p2 &lt;- p1 +
+  geom_errorbar(aes(ymin = lower, ymax = upper),
+                colour = &quot;black&quot;, width = .1)
+
+p2</code></pre>
+<p><img src="staticunnamed-chunk-8-1.png" width="672" /></p>
+</div>
+<div id="gráfico-de-barras-com-fill" class="section level3">
+<h3>Gráfico de barras com fill</h3>
+</div>
+<div id="gráfico-de-barras-com-fill-mais-facet" class="section level3">
+<h3>Gráfico de barras com fill mais facet</h3>
+</div>
+</div>
+<div class="footnotes footnotes-end-of-document">
+<hr />
+<ol>
+<li id="fn1"><p>Murray CJ. Quantifying the burden of disease: the technical basis for disability-adjusted life years. Bull World Health Organ. 1994;72(3):429-45. PMID: 8062401; PMCID: PMC2486718.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>Global Burden of Disease Collaborative Network. Global Burden of Disease Study 2019 (GBD 2019) Results. Seattle, United States: Institute for Health Metrics and Evaluation (IHME), 2020. Available from <a href="https://vizhub.healthdata.org/gbd-results/" class="uri">https://vizhub.healthdata.org/gbd-results/</a>.<a href="#fnref2" class="footnote-back">↩︎</a></p></li>
+<li id="fn3"><p>Se <strong>você ainda não conhece</strong> o pacote <code>ggplot2</code>, não deixe de conferir o material do minicurso <a href="https://datathon-ufrgs.github.io/Pintando_e_Bordando_no_R/">Pintando e Bordando no R</a> apresentado no <a href="https://www.ufrgs.br/datathon/">1º Datathon da UFRGS</a>.<a href="#fnref3" class="footnote-back">↩︎</a></p></li>
+<li id="fn4"><p>A razão de se utilizar o termo “intervalo de incerteza” no lugar de “intervalo de credibilidade” é algo que ainda não compreendo bem.<a href="#fnref4" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>

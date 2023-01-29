@@ -1,0 +1,202 @@
+measure,location,sex,age,cause,metric,year,val,upper,lower
+YLDs (Years Lived with Disability),Global,Male,0-6 days,Chronic obstructive pulmonary disease,Number,2019,0.0,0.0,0.0
+YLDs (Years Lived with Disability),Global,Female,0-6 days,Chronic obstructive pulmonary disease,Number,2019,0.0,0.0,0.0
+YLDs (Years Lived with Disability),Global,Both,0-6 days,Chronic obstructive pulmonary disease,Number,2019,0.0,0.0,0.0
+YLDs (Years Lived with Disability),Global,Male,7-27 days,Chronic obstructive pulmonary disease,Number,2019,0.0,0.0,0.0
+YLDs (Years Lived with Disability),Global,Female,7-27 days,Chronic obstructive pulmonary disease,Number,2019,0.0,0.0,0.0
+YLDs (Years Lived with Disability),Global,Both,7-27 days,Chronic obstructive pulmonary disease,Number,2019,0.0,0.0,0.0
+YLDs (Years Lived with Disability),Global,Male,28-364 days,Chronic obstructive pulmonary disease,Number,2019,597.2751378221075,756.3609617934686,413.57470325318576
+YLDs (Years Lived with Disability),Global,Female,28-364 days,Chronic obstructive pulmonary disease,Number,2019,680.2154764344465,854.2120045713515,483.8405539141886
+YLDs (Years Lived with Disability),Global,Both,28-364 days,Chronic obstructive pulmonary disease,Number,2019,1277.490614256554,1591.002055361023,892.8944843185
+YLDs (Years Lived with Disability),Global,Male,1-4 years,Chronic obstructive pulmonary disease,Number,2019,14635.858657235542,18507.213266778406,10542.494988783465
+YLDs (Years Lived with Disability),Global,Female,1-4 years,Chronic obstructive pulmonary disease,Number,2019,16747.14521843437,20734.902128565984,12558.8589368146
+YLDs (Years Lived with Disability),Global,Both,1-4 years,Chronic obstructive pulmonary disease,Number,2019,31383.003875669907,38415.40009438206,23549.243976034082
+YLDs (Years Lived with Disability),Global,Male,5-9 years,Chronic obstructive pulmonary disease,Number,2019,44958.18625730094,55045.591217060595,34058.384256792895
+YLDs (Years Lived with Disability),Global,Female,5-9 years,Chronic obstructive pulmonary disease,Number,2019,51288.56600258494,61981.84374592966,39576.9883152988
+YLDs (Years Lived with Disability),Global,Both,5-9 years,Chronic obstructive pulmonary disease,Number,2019,96246.75225988589,115722.40393162402,74462.06276193047
+YLDs (Years Lived with Disability),Global,Male,10-14 years,Chronic obstructive pulmonary disease,Number,2019,73911.10502092952,89529.45687836396,57638.0399677784
+YLDs (Years Lived with Disability),Global,Female,10-14 years,Chronic obstructive pulmonary disease,Number,2019,82979.66001105768,99147.07689617129,65831.6839458054
+YLDs (Years Lived with Disability),Global,Both,10-14 years,Chronic obstructive pulmonary disease,Number,2019,156890.7650319872,186424.08197763175,124330.26249113525
+YLDs (Years Lived with Disability),Global,Male,15-19 years,Chronic obstructive pulmonary disease,Number,2019,105086.069544274,125271.32544355407,83924.18208190003
+YLDs (Years Lived with Disability),Global,Female,15-19 years,Chronic obstructive pulmonary disease,Number,2019,117498.75708513985,139675.53070468185,94432.80628961093
+YLDs (Years Lived with Disability),Global,Both,15-19 years,Chronic obstructive pulmonary disease,Number,2019,222584.82662941384,261806.91641154245,179175.39854608476
+YLDs (Years Lived with Disability),Global,Male,20-24 years,Chronic obstructive pulmonary disease,Number,2019,154099.23316009462,182885.94306811746,124521.08015336316
+YLDs (Years Lived with Disability),Global,Female,20-24 years,Chronic obstructive pulmonary disease,Number,2019,174652.7838069102,205404.9720451372,139815.29733471657
+YLDs (Years Lived with Disability),Global,Both,20-24 years,Chronic obstructive pulmonary disease,Number,2019,328752.01696700475,381943.98672969174,267408.94062954525
+YLDs (Years Lived with Disability),Global,Male,25-29 years,Chronic obstructive pulmonary disease,Number,2019,204919.89102608943,241871.5252579025,164807.64541406903
+YLDs (Years Lived with Disability),Global,Female,25-29 years,Chronic obstructive pulmonary disease,Number,2019,236706.90007498133,278324.9712417912,188882.454496949
+YLDs (Years Lived with Disability),Global,Both,25-29 years,Chronic obstructive pulmonary disease,Number,2019,441626.79110107076,513506.80503261805,357545.4301275582
+YLDs (Years Lived with Disability),Global,Male,30-34 years,Chronic obstructive pulmonary disease,Number,2019,251950.6331751383,298643.57089315564,203401.53685752174
+YLDs (Years Lived with Disability),Global,Female,30-34 years,Chronic obstructive pulmonary disease,Number,2019,290353.29454229167,346712.82304825436,229595.98081280108
+YLDs (Years Lived with Disability),Global,Both,30-34 years,Chronic obstructive pulmonary disease,Number,2019,542303.9277174298,629497.598188172,439726.6322857877
+YLDs (Years Lived with Disability),Global,Male,35-39 years,Chronic obstructive pulmonary disease,Number,2019,275396.02119118045,325523.89268770604,223293.25418781067
+YLDs (Years Lived with Disability),Global,Female,35-39 years,Chronic obstructive pulmonary disease,Number,2019,310766.8893021052,369323.27574833407,242806.5006888199
+YLDs (Years Lived with Disability),Global,Both,35-39 years,Chronic obstructive pulmonary disease,Number,2019,586162.9104932856,684041.6221497915,468734.95757049473
+YLDs (Years Lived with Disability),Global,Male,40-44 years,Chronic obstructive pulmonary disease,Number,2019,331200.3681448469,390181.0962800876,269547.1192240498
+YLDs (Years Lived with Disability),Global,Female,40-44 years,Chronic obstructive pulmonary disease,Number,2019,361265.1003540529,424834.10867951385,290241.0731027274
+YLDs (Years Lived with Disability),Global,Both,40-44 years,Chronic obstructive pulmonary disease,Number,2019,692465.4684988997,800752.65772138,563921.102835777
+YLDs (Years Lived with Disability),Global,Male,45-49 years,Chronic obstructive pulmonary disease,Number,2019,534042.0765554489,643817.5444365822,423410.07819207053
+YLDs (Years Lived with Disability),Global,Female,45-49 years,Chronic obstructive pulmonary disease,Number,2019,549107.0975371053,656374.1621785847,439226.93856346246
+YLDs (Years Lived with Disability),Global,Both,45-49 years,Chronic obstructive pulmonary disease,Number,2019,1083149.174092554,1286662.7844515035,876137.6266318416
+YLDs (Years Lived with Disability),Global,Male,50-54 years,Chronic obstructive pulmonary disease,Number,2019,752992.6213772031,904829.4951974028,596602.0456597942
+YLDs (Years Lived with Disability),Global,Female,50-54 years,Chronic obstructive pulmonary disease,Number,2019,768635.2586389474,917623.3746380795,618853.4360586714
+YLDs (Years Lived with Disability),Global,Both,50-54 years,Chronic obstructive pulmonary disease,Number,2019,1521627.8800161504,1793372.394777196,1224250.3606572114
+YLDs (Years Lived with Disability),Global,Male,55-59 years,Chronic obstructive pulmonary disease,Number,2019,876709.0805646324,1043532.411354556,703625.6251341577
+YLDs (Years Lived with Disability),Global,Female,55-59 years,Chronic obstructive pulmonary disease,Number,2019,897013.3896801303,1065678.9162382386,722315.4824521932
+YLDs (Years Lived with Disability),Global,Both,55-59 years,Chronic obstructive pulmonary disease,Number,2019,1773722.470244763,2082400.4133918916,1440597.3284677828
+YLDs (Years Lived with Disability),Global,Male,60-64 years,Chronic obstructive pulmonary disease,Number,2019,984457.611071654,1152605.6807794797,799203.5400790111
+YLDs (Years Lived with Disability),Global,Female,60-64 years,Chronic obstructive pulmonary disease,Number,2019,1022596.9147809009,1210512.3943632406,836469.6911813358
+YLDs (Years Lived with Disability),Global,Both,60-64 years,Chronic obstructive pulmonary disease,Number,2019,2007054.5258525547,2322948.555649896,1648801.9239326727
+YLDs (Years Lived with Disability),Global,Male,65-69 years,Chronic obstructive pulmonary disease,Number,2019,1160601.4782390571,1372073.2802298502,944036.97270015
+YLDs (Years Lived with Disability),Global,Female,65-69 years,Chronic obstructive pulmonary disease,Number,2019,1249682.5928457151,1493502.7096538628,1015636.582356497
+YLDs (Years Lived with Disability),Global,Both,65-69 years,Chronic obstructive pulmonary disease,Number,2019,2410284.0710847722,2815015.092506932,1981101.1439109456
+YLDs (Years Lived with Disability),Global,Male,70-74 years,Chronic obstructive pulmonary disease,Number,2019,1157360.520366246,1364768.2395779954,932480.5990032564
+YLDs (Years Lived with Disability),Global,Female,70-74 years,Chronic obstructive pulmonary disease,Number,2019,1253584.5348518365,1475211.0736675952,1015856.017694545
+YLDs (Years Lived with Disability),Global,Both,70-74 years,Chronic obstructive pulmonary disease,Number,2019,2410945.0552180833,2768302.558208577,1963609.8420110312
+YLDs (Years Lived with Disability),Global,Male,75-79 years,Chronic obstructive pulmonary disease,Number,2019,987119.6759629674,1163940.5644410593,781495.5252444365
+YLDs (Years Lived with Disability),Global,Female,75-79 years,Chronic obstructive pulmonary disease,Number,2019,1131973.8386213246,1335311.6945187435,909899.0685449775
+YLDs (Years Lived with Disability),Global,Both,75-79 years,Chronic obstructive pulmonary disease,Number,2019,2119093.5145842917,2453187.214630358,1725909.7860259952
+YLDs (Years Lived with Disability),Global,Male,80-84,Chronic obstructive pulmonary disease,Number,2019,745276.0011464917,869254.3207822472,589629.817032106
+YLDs (Years Lived with Disability),Global,Female,80-84,Chronic obstructive pulmonary disease,Number,2019,961463.8580786268,1133847.1777213267,769073.1498646202
+YLDs (Years Lived with Disability),Global,Both,80-84,Chronic obstructive pulmonary disease,Number,2019,1706739.8592251185,1959845.1367225035,1401040.438154306
+YLDs (Years Lived with Disability),Global,Male,85-89,Chronic obstructive pulmonary disease,Number,2019,423143.09733165527,497779.4684096948,336092.6643461753
+YLDs (Years Lived with Disability),Global,Female,85-89,Chronic obstructive pulmonary disease,Number,2019,644607.2993098974,761021.6339172943,511723.03052940936
+YLDs (Years Lived with Disability),Global,Both,85-89,Chronic obstructive pulmonary disease,Number,2019,1067750.3966415527,1227765.0004690725,877505.8295510957
+YLDs (Years Lived with Disability),Global,Male,90-94,Chronic obstructive pulmonary disease,Number,2019,166220.0667918971,193379.93276863487,135246.0339767619
+YLDs (Years Lived with Disability),Global,Female,90-94,Chronic obstructive pulmonary disease,Number,2019,316869.52964552457,371878.8679838325,253427.58631380668
+YLDs (Years Lived with Disability),Global,Both,90-94,Chronic obstructive pulmonary disease,Number,2019,483089.5964374217,556664.2581607561,400169.7348380471
+YLDs (Years Lived with Disability),Global,Male,95+ years,Chronic obstructive pulmonary disease,Number,2019,45966.21186250264,53995.13161540741,37095.2881046994
+YLDs (Years Lived with Disability),Global,Female,95+ years,Chronic obstructive pulmonary disease,Number,2019,108352.01849565357,129619.78415102932,85654.82434356825
+YLDs (Years Lived with Disability),Global,Both,95+ years,Chronic obstructive pulmonary disease,Number,2019,154318.2303581562,180070.49665579613,125350.93639352897
+YLLs (Years of Life Lost),Global,Male,28-364 days,Chronic obstructive pulmonary disease,Number,2019,0.0,0.0,0.0
+YLLs (Years of Life Lost),Global,Female,28-364 days,Chronic obstructive pulmonary disease,Number,2019,0.0,0.0,0.0
+YLLs (Years of Life Lost),Global,Both,28-364 days,Chronic obstructive pulmonary disease,Number,2019,0.0,0.0,0.0
+YLLs (Years of Life Lost),Global,Male,1-4 years,Chronic obstructive pulmonary disease,Number,2019,34418.252124084,53413.466782543,23205.22964258015
+YLLs (Years of Life Lost),Global,Female,1-4 years,Chronic obstructive pulmonary disease,Number,2019,62163.82018542558,118622.85119341197,32127.659469570128
+YLLs (Years of Life Lost),Global,Both,1-4 years,Chronic obstructive pulmonary disease,Number,2019,96582.0723095094,162241.60160242507,63134.104601488514
+YLLs (Years of Life Lost),Global,Male,5-9 years,Chronic obstructive pulmonary disease,Number,2019,14565.2525707493,19417.254454071437,11579.719275988617
+YLLs (Years of Life Lost),Global,Female,5-9 years,Chronic obstructive pulmonary disease,Number,2019,13459.849219193598,18719.182933159816,8338.85437902072
+YLLs (Years of Life Lost),Global,Both,5-9 years,Chronic obstructive pulmonary disease,Number,2019,28025.10178994289,35157.733426006256,22411.326332162298
+YLLs (Years of Life Lost),Global,Male,10-14 years,Chronic obstructive pulmonary disease,Number,2019,12722.94022466023,16497.716102200236,10397.571150498643
+YLLs (Years of Life Lost),Global,Female,10-14 years,Chronic obstructive pulmonary disease,Number,2019,10922.988220163239,14604.25799708114,7528.063308074911
+YLLs (Years of Life Lost),Global,Both,10-14 years,Chronic obstructive pulmonary disease,Number,2019,23645.92844482346,28837.92201186933,19971.62668932033
+YLLs (Years of Life Lost),Global,Male,15-19 years,Chronic obstructive pulmonary disease,Number,2019,71796.63813764708,91763.08905850073,58986.66243736865
+YLLs (Years of Life Lost),Global,Female,15-19 years,Chronic obstructive pulmonary disease,Number,2019,51678.651595156116,66327.64570327834,36471.353368643366
+YLLs (Years of Life Lost),Global,Both,15-19 years,Chronic obstructive pulmonary disease,Number,2019,123475.28973280326,152627.3140596962,105683.84965168293
+YLLs (Years of Life Lost),Global,Male,20-24 years,Chronic obstructive pulmonary disease,Number,2019,91547.65287377867,111987.63014661885,76248.17349260433
+YLLs (Years of Life Lost),Global,Female,20-24 years,Chronic obstructive pulmonary disease,Number,2019,64648.86149329447,83415.27691148916,45999.09519756734
+YLLs (Years of Life Lost),Global,Both,20-24 years,Chronic obstructive pulmonary disease,Number,2019,156196.5143670728,187724.74667626506,132594.56352880073
+YLLs (Years of Life Lost),Global,Male,25-29 years,Chronic obstructive pulmonary disease,Number,2019,116501.65976332207,139421.896963866,99238.73946644823
+YLLs (Years of Life Lost),Global,Female,25-29 years,Chronic obstructive pulmonary disease,Number,2019,76036.67246744118,96373.87457967419,56678.091526097385
+YLLs (Years of Life Lost),Global,Both,25-29 years,Chronic obstructive pulmonary disease,Number,2019,192538.3322307633,223177.93236323114,166486.28949718087
+YLLs (Years of Life Lost),Global,Male,30-34 years,Chronic obstructive pulmonary disease,Number,2019,184045.64478728786,218649.80333291867,159773.76456781314
+YLLs (Years of Life Lost),Global,Female,30-34 years,Chronic obstructive pulmonary disease,Number,2019,109985.22373115412,139894.86791343932,84321.02244864122
+YLLs (Years of Life Lost),Global,Both,30-34 years,Chronic obstructive pulmonary disease,Number,2019,294030.8685184422,343168.7685743741,255176.82731892346
+YLLs (Years of Life Lost),Global,Male,35-39 years,Chronic obstructive pulmonary disease,Number,2019,262360.38797276095,308434.8384615161,227188.07878530744
+YLLs (Years of Life Lost),Global,Female,35-39 years,Chronic obstructive pulmonary disease,Number,2019,154660.3008811039,200687.37619522904,119044.65943805079
+YLLs (Years of Life Lost),Global,Both,35-39 years,Chronic obstructive pulmonary disease,Number,2019,417020.6888538643,483228.2019077439,358011.4535311493
+YLLs (Years of Life Lost),Global,Male,40-44 years,Chronic obstructive pulmonary disease,Number,2019,449143.31984133314,516107.23882210697,389230.55727500154
+YLLs (Years of Life Lost),Global,Female,40-44 years,Chronic obstructive pulmonary disease,Number,2019,234375.7805933411,295945.08856813214,180306.51351082762
+YLLs (Years of Life Lost),Global,Both,40-44 years,Chronic obstructive pulmonary disease,Number,2019,683519.100434675,782150.4817281718,591786.0128270279
+YLLs (Years of Life Lost),Global,Male,45-49 years,Chronic obstructive pulmonary disease,Number,2019,818186.7684764573,942462.8205783999,701386.2112881399
+YLLs (Years of Life Lost),Global,Female,45-49 years,Chronic obstructive pulmonary disease,Number,2019,422490.6885312843,532769.2479742721,329279.04392242874
+YLLs (Years of Life Lost),Global,Both,45-49 years,Chronic obstructive pulmonary disease,Number,2019,1240677.4570077434,1406084.4880488273,1076830.9221210908
+YLLs (Years of Life Lost),Global,Male,50-54 years,Chronic obstructive pulmonary disease,Number,2019,1561003.0665694878,1792160.659181216,1351122.4430496772
+YLLs (Years of Life Lost),Global,Female,50-54 years,Chronic obstructive pulmonary disease,Number,2019,865349.0235814756,1057628.961285936,665358.1047346903
+YLLs (Years of Life Lost),Global,Both,50-54 years,Chronic obstructive pulmonary disease,Number,2019,2426352.0901509635,2720292.4006555206,2093206.211419815
+YLLs (Years of Life Lost),Global,Male,55-59 years,Chronic obstructive pulmonary disease,Number,2019,2413268.826374298,2761786.506292842,2090960.4009762404
+YLLs (Years of Life Lost),Global,Female,55-59 years,Chronic obstructive pulmonary disease,Number,2019,1275851.1083783114,1517558.2734603735,1017953.6285561156
+YLLs (Years of Life Lost),Global,Both,55-59 years,Chronic obstructive pulmonary disease,Number,2019,3689119.934752612,4115416.5249829027,3215742.512104212
+YLLs (Years of Life Lost),Global,Male,60-64 years,Chronic obstructive pulmonary disease,Number,2019,3766176.7823125287,4246859.380882516,3336855.2265728978
+YLLs (Years of Life Lost),Global,Female,60-64 years,Chronic obstructive pulmonary disease,Number,2019,2120360.960158395,2489026.195976123,1733882.3633107627
+YLLs (Years of Life Lost),Global,Both,60-64 years,Chronic obstructive pulmonary disease,Number,2019,5886537.742470923,6515874.30714776,5205629.299292953
+YLLs (Years of Life Lost),Global,Male,65-69 years,Chronic obstructive pulmonary disease,Number,2019,4910412.5731221065,5504086.342567502,4372782.283775157
+YLLs (Years of Life Lost),Global,Female,65-69 years,Chronic obstructive pulmonary disease,Number,2019,2866092.8966907393,3304572.7213135343,2381586.872656049
+YLLs (Years of Life Lost),Global,Both,65-69 years,Chronic obstructive pulmonary disease,Number,2019,7776505.469812842,8532732.774612732,6986857.413115156
+YLLs (Years of Life Lost),Global,Male,70-74 years,Chronic obstructive pulmonary disease,Number,2019,5672491.684813422,6340229.708960142,5071666.246474336
+YLLs (Years of Life Lost),Global,Female,70-74 years,Chronic obstructive pulmonary disease,Number,2019,3539505.3672337313,4085710.7738270722,2925347.3861523666
+YLLs (Years of Life Lost),Global,Both,70-74 years,Chronic obstructive pulmonary disease,Number,2019,9211997.052047158,10082705.572615005,8218289.413887369
+YLLs (Years of Life Lost),Global,Male,75-79 years,Chronic obstructive pulmonary disease,Number,2019,5045108.7973948065,5569305.749334774,4525433.446735203
+YLLs (Years of Life Lost),Global,Female,75-79 years,Chronic obstructive pulmonary disease,Number,2019,3383859.4739826764,3861896.5006636865,2789883.437633558
+YLLs (Years of Life Lost),Global,Both,75-79 years,Chronic obstructive pulmonary disease,Number,2019,8428968.271377489,9190787.818974279,7518846.0072768545
+YLLs (Years of Life Lost),Global,Male,80-84,Chronic obstructive pulmonary disease,Number,2019,4236847.784138605,4675307.809601156,3771411.712184665
+YLLs (Years of Life Lost),Global,Female,80-84,Chronic obstructive pulmonary disease,Number,2019,3434797.331267997,3951499.1936956057,2765614.1681738487
+YLLs (Years of Life Lost),Global,Both,80-84,Chronic obstructive pulmonary disease,Number,2019,7671645.115406598,8402444.113891456,6767077.101488404
+YLLs (Years of Life Lost),Global,Male,85-89,Chronic obstructive pulmonary disease,Number,2019,2313790.23313126,2540995.9761432917,2049963.8935916433
+YLLs (Years of Life Lost),Global,Female,85-89,Chronic obstructive pulmonary disease,Number,2019,1991388.3630660775,2290367.0395166827,1592126.8427471565
+YLLs (Years of Life Lost),Global,Both,85-89,Chronic obstructive pulmonary disease,Number,2019,4305178.596197337,4736344.371650848,3689131.91852775
+YLLs (Years of Life Lost),Global,Male,90-94,Chronic obstructive pulmonary disease,Number,2019,651795.2866874312,718257.415409762,551601.3061488488
+YLLs (Years of Life Lost),Global,Female,90-94,Chronic obstructive pulmonary disease,Number,2019,874190.2653349676,1012718.3972473369,678587.0538860953
+YLLs (Years of Life Lost),Global,Both,90-94,Chronic obstructive pulmonary disease,Number,2019,1525985.5520223994,1714871.9687888145,1227790.5236428499
+YLLs (Years of Life Lost),Global,Male,95+ years,Chronic obstructive pulmonary disease,Number,2019,139214.6278403487,154875.05071002335,111177.08981194906
+YLLs (Years of Life Lost),Global,Female,95+ years,Chronic obstructive pulmonary disease,Number,2019,277682.2916618982,323047.32115156896,206564.30196328356
+YLLs (Years of Life Lost),Global,Both,95+ years,Chronic obstructive pulmonary disease,Number,2019,416896.91950224736,475158.6608044048,321892.84070013795
+DALYs (Disability-Adjusted Life Years),Global,Male,0-6 days,Chronic obstructive pulmonary disease,Number,2019,0.0,0.0,0.0
+DALYs (Disability-Adjusted Life Years),Global,Female,0-6 days,Chronic obstructive pulmonary disease,Number,2019,0.0,0.0,0.0
+DALYs (Disability-Adjusted Life Years),Global,Both,0-6 days,Chronic obstructive pulmonary disease,Number,2019,0.0,0.0,0.0
+DALYs (Disability-Adjusted Life Years),Global,Male,7-27 days,Chronic obstructive pulmonary disease,Number,2019,0.0,0.0,0.0
+DALYs (Disability-Adjusted Life Years),Global,Female,7-27 days,Chronic obstructive pulmonary disease,Number,2019,0.0,0.0,0.0
+DALYs (Disability-Adjusted Life Years),Global,Both,7-27 days,Chronic obstructive pulmonary disease,Number,2019,0.0,0.0,0.0
+DALYs (Disability-Adjusted Life Years),Global,Male,28-364 days,Chronic obstructive pulmonary disease,Number,2019,597.2751378221076,756.3609617934686,413.57470325318576
+DALYs (Disability-Adjusted Life Years),Global,Female,28-364 days,Chronic obstructive pulmonary disease,Number,2019,680.215476434447,854.2120045713515,483.8405539141886
+DALYs (Disability-Adjusted Life Years),Global,Both,28-364 days,Chronic obstructive pulmonary disease,Number,2019,1277.4906142565515,1591.002055361023,892.8944843184998
+DALYs (Disability-Adjusted Life Years),Global,Male,1-4 years,Chronic obstructive pulmonary disease,Number,2019,49054.11078131946,68174.83581442191,37209.34730499988
+DALYs (Disability-Adjusted Life Years),Global,Female,1-4 years,Chronic obstructive pulmonary disease,Number,2019,78910.96540385981,135507.11093363428,48097.15994628811
+DALYs (Disability-Adjusted Life Years),Global,Both,1-4 years,Chronic obstructive pulmonary disease,Number,2019,127965.07618517941,194103.34956414145,94455.26598735427
+DALYs (Disability-Adjusted Life Years),Global,Male,5-9 years,Chronic obstructive pulmonary disease,Number,2019,59523.43882805024,70497.92432020101,48059.2150433523
+DALYs (Disability-Adjusted Life Years),Global,Female,5-9 years,Chronic obstructive pulmonary disease,Number,2019,64748.41522177854,76524.53591400677,52659.015192246196
+DALYs (Disability-Adjusted Life Years),Global,Both,5-9 years,Chronic obstructive pulmonary disease,Number,2019,124271.85404982878,144970.10614930748,100878.10005066675
+DALYs (Disability-Adjusted Life Years),Global,Male,10-14 years,Chronic obstructive pulmonary disease,Number,2019,86634.04524558973,102043.64448725847,69824.9468685942
+DALYs (Disability-Adjusted Life Years),Global,Female,10-14 years,Chronic obstructive pulmonary disease,Number,2019,93902.64823122094,110026.78989255258,76851.85495096767
+DALYs (Disability-Adjusted Life Years),Global,Both,10-14 years,Chronic obstructive pulmonary disease,Number,2019,180536.69347681064,209420.46831361332,147411.93790480695
+DALYs (Disability-Adjusted Life Years),Global,Male,15-19 years,Chronic obstructive pulmonary disease,Number,2019,176882.70768192125,205241.08896269093,150337.11040508767
+DALYs (Disability-Adjusted Life Years),Global,Female,15-19 years,Chronic obstructive pulmonary disease,Number,2019,169177.40868029586,195125.40640410548,143852.91562403433
+DALYs (Disability-Adjusted Life Years),Global,Both,15-19 years,Chronic obstructive pulmonary disease,Number,2019,346060.1163622173,391305.7279459921,298654.70902265294
+DALYs (Disability-Adjusted Life Years),Global,Male,20-24 years,Chronic obstructive pulmonary disease,Number,2019,245646.88603387304,277933.69400089374,212217.75779048487
+DALYs (Disability-Adjusted Life Years),Global,Female,20-24 years,Chronic obstructive pulmonary disease,Number,2019,239301.64530020457,273607.9079683939,199926.24819111338
+DALYs (Disability-Adjusted Life Years),Global,Both,20-24 years,Chronic obstructive pulmonary disease,Number,2019,484948.5313340774,545335.1062226576,418506.98652853316
+DALYs (Disability-Adjusted Life Years),Global,Male,25-29 years,Chronic obstructive pulmonary disease,Number,2019,321421.5507894112,363345.68827315106,276733.60971024376
+DALYs (Disability-Adjusted Life Years),Global,Female,25-29 years,Chronic obstructive pulmonary disease,Number,2019,312743.5725424222,357297.96601550875,262151.6777325899
+DALYs (Disability-Adjusted Life Years),Global,Both,25-29 years,Chronic obstructive pulmonary disease,Number,2019,634165.1233318343,710536.3830838939,544310.5519502828
+DALYs (Disability-Adjusted Life Years),Global,Male,30-34 years,Chronic obstructive pulmonary disease,Number,2019,435996.277962426,492036.89422219456,381282.5908267029
+DALYs (Disability-Adjusted Life Years),Global,Female,30-34 years,Chronic obstructive pulmonary disease,Number,2019,400338.5182734462,460784.7332244149,335246.091073053
+DALYs (Disability-Adjusted Life Years),Global,Both,30-34 years,Chronic obstructive pulmonary disease,Number,2019,836334.7962358708,938256.5856465028,724150.7638943526
+DALYs (Disability-Adjusted Life Years),Global,Male,35-39 years,Chronic obstructive pulmonary disease,Number,2019,537756.4091639415,607295.0344825097,473431.3442297754
+DALYs (Disability-Adjusted Life Years),Global,Female,35-39 years,Chronic obstructive pulmonary disease,Number,2019,465427.19018320827,535848.7411294819,392740.8434383519
+DALYs (Disability-Adjusted Life Years),Global,Both,35-39 years,Chronic obstructive pulmonary disease,Number,2019,1003183.599347151,1118650.581696545,874378.0736069928
+DALYs (Disability-Adjusted Life Years),Global,Male,40-44 years,Chronic obstructive pulmonary disease,Number,2019,780343.6879861808,875745.3260851876,690676.2886503153
+DALYs (Disability-Adjusted Life Years),Global,Female,40-44 years,Chronic obstructive pulmonary disease,Number,2019,595640.8809473946,688330.706737157,506720.8610723908
+DALYs (Disability-Adjusted Life Years),Global,Both,40-44 years,Chronic obstructive pulmonary disease,Number,2019,1375984.5689335763,1524475.03268725,1222620.5359139158
+DALYs (Disability-Adjusted Life Years),Global,Male,45-49 years,Chronic obstructive pulmonary disease,Number,2019,1352228.8450319057,1528355.6976796503,1200106.9180574848
+DALYs (Disability-Adjusted Life Years),Global,Female,45-49 years,Chronic obstructive pulmonary disease,Number,2019,971597.7860683914,1117648.9537413593,829838.4395280919
+DALYs (Disability-Adjusted Life Years),Global,Both,45-49 years,Chronic obstructive pulmonary disease,Number,2019,2323826.631100297,2578083.058861183,2070265.9755099737
+DALYs (Disability-Adjusted Life Years),Global,Male,50-54 years,Chronic obstructive pulmonary disease,Number,2019,2313995.687946693,2599605.9670583243,2062890.6775798996
+DALYs (Disability-Adjusted Life Years),Global,Female,50-54 years,Chronic obstructive pulmonary disease,Number,2019,1633984.2822204253,1876062.6298183291,1384779.533440358
+DALYs (Disability-Adjusted Life Years),Global,Both,50-54 years,Chronic obstructive pulmonary disease,Number,2019,3947979.970167119,4339782.975124226,3521169.413957524
+DALYs (Disability-Adjusted Life Years),Global,Male,55-59 years,Chronic obstructive pulmonary disease,Number,2019,3289977.906938933,3665542.833253319,2923674.0507672112
+DALYs (Disability-Adjusted Life Years),Global,Female,55-59 years,Chronic obstructive pulmonary disease,Number,2019,2172864.498058442,2479040.1487618405,1866700.107959487
+DALYs (Disability-Adjusted Life Years),Global,Both,55-59 years,Chronic obstructive pulmonary disease,Number,2019,5462842.4049973795,6000000.924904062,4893674.274659011
+DALYs (Disability-Adjusted Life Years),Global,Male,60-64 years,Chronic obstructive pulmonary disease,Number,2019,4750634.393384176,5262682.92095652,4279644.201087704
+DALYs (Disability-Adjusted Life Years),Global,Female,60-64 years,Chronic obstructive pulmonary disease,Number,2019,3142957.8749392964,3559392.4747971357,2718206.265070815
+DALYs (Disability-Adjusted Life Years),Global,Both,60-64 years,Chronic obstructive pulmonary disease,Number,2019,7893592.268323477,8602028.412354229,7152636.6657500835
+DALYs (Disability-Adjusted Life Years),Global,Male,65-69 years,Chronic obstructive pulmonary disease,Number,2019,6071014.051361173,6693438.635314901,5492473.700239172
+DALYs (Disability-Adjusted Life Years),Global,Female,65-69 years,Chronic obstructive pulmonary disease,Number,2019,4115775.4895364507,4616267.518351087,3593456.7151722484
+DALYs (Disability-Adjusted Life Years),Global,Both,65-69 years,Chronic obstructive pulmonary disease,Number,2019,10186789.54089762,11025862.511647515,9273530.107492177
+DALYs (Disability-Adjusted Life Years),Global,Male,70-74 years,Chronic obstructive pulmonary disease,Number,2019,6829852.20517966,7521675.303920487,6212128.492973428
+DALYs (Disability-Adjusted Life Years),Global,Female,70-74 years,Chronic obstructive pulmonary disease,Number,2019,4793089.902085573,5408770.175813591,4144176.6977024865
+DALYs (Disability-Adjusted Life Years),Global,Both,70-74 years,Chronic obstructive pulmonary disease,Number,2019,11622942.107265232,12589668.952638311,10632480.50599135
+DALYs (Disability-Adjusted Life Years),Global,Male,75-79 years,Chronic obstructive pulmonary disease,Number,2019,6032228.4733577715,6612935.40701044,5483296.602424657
+DALYs (Disability-Adjusted Life Years),Global,Female,75-79 years,Chronic obstructive pulmonary disease,Number,2019,4515833.312603997,5034666.897158527,3865919.770138458
+DALYs (Disability-Adjusted Life Years),Global,Both,75-79 years,Chronic obstructive pulmonary disease,Number,2019,10548061.785961771,11469451.999188453,9623308.748767497
+DALYs (Disability-Adjusted Life Years),Global,Male,80-84,Chronic obstructive pulmonary disease,Number,2019,4982123.785285094,5447441.294645395,4491569.32010557
+DALYs (Disability-Adjusted Life Years),Global,Female,80-84,Chronic obstructive pulmonary disease,Number,2019,4396261.189346622,4943143.586870971,3733713.116140925
+DALYs (Disability-Adjusted Life Years),Global,Both,80-84,Chronic obstructive pulmonary disease,Number,2019,9378384.97463173,10198945.996685162,8382435.948468622
+DALYs (Disability-Adjusted Life Years),Global,Male,85-89,Chronic obstructive pulmonary disease,Number,2019,2736933.330462915,2980332.8508264376,2454884.2047488336
+DALYs (Disability-Adjusted Life Years),Global,Female,85-89,Chronic obstructive pulmonary disease,Number,2019,2635995.662375976,2990503.126642083,2219038.5558017856
+DALYs (Disability-Adjusted Life Years),Global,Both,85-89,Chronic obstructive pulmonary disease,Number,2019,5372928.992838892,5875908.64526331,4725422.796107276
+DALYs (Disability-Adjusted Life Years),Global,Male,90-94,Chronic obstructive pulmonary disease,Number,2019,818015.3534793289,889461.6967189312,708327.8096280711
+DALYs (Disability-Adjusted Life Years),Global,Female,90-94,Chronic obstructive pulmonary disease,Number,2019,1191059.7949804906,1350687.5063122993,981956.8026578788
+DALYs (Disability-Adjusted Life Years),Global,Both,90-94,Chronic obstructive pulmonary disease,Number,2019,2009075.148459823,2223040.7041136012,1698647.6406010473
+DALYs (Disability-Adjusted Life Years),Global,Male,95+ years,Chronic obstructive pulmonary disease,Number,2019,185180.83970285123,203902.1375818069,154735.851194729
+DALYs (Disability-Adjusted Life Years),Global,Female,95+ years,Chronic obstructive pulmonary disease,Number,2019,386034.3101575517,436284.3920346587,309522.63627777906
+DALYs (Disability-Adjusted Life Years),Global,Both,95+ years,Chronic obstructive pulmonary disease,Number,2019,571215.1498604037,637424.9883588122,470576.4109828289

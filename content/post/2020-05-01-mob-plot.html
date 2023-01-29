@@ -12,7 +12,7 @@ tags:
 
 
 <p>No último mês, a <a href="https://about.google/">Google</a> vem disponibilizando relatórios sobre a <a href="https://www.google.com/covid19/mobility/">mobilidade das comunidades</a> com o intuito de fornecer informações sobre o que mudou em resposta às políticas destinadas a combater o COVID-19. Os relatórios traçam tendências de movimento ao longo do tempo por região geográfica, em diferentes categorias de lugares, como varejo e recreação, compras e farmácias, parques, estações de trânsito, locais de trabalho e residenciais.</p>
-<p>O relatório mais recente foi publicado hoje (01/05/2020). Vamos aproveitar que, junto do relatório, um arquivo <a href="https://www.google.com/covid19/mobility/data_documentation.html?hl=en">CSV</a> é disponibilizado, e vamos explorar algumas funções em <a href="https://www.r-project.org/">R</a> de manipulação de dados e construirmos um <strong>gráfico de mobilidade</strong> com o pacote <a href="https://ggplot2.tidyverse.org/">ggplot2</a> para a localidade do estado do Rio Grande do Sul.</p>
+<p>O relatório mais recente foi publicado hoje (29/01/2023). Vamos aproveitar que, junto do relatório, um arquivo <a href="https://www.google.com/covid19/mobility/data_documentation.html?hl=en">CSV</a> é disponibilizado, e vamos explorar algumas funções em <a href="https://www.r-project.org/">R</a> de manipulação de dados e construirmos um <strong>gráfico de mobilidade</strong> com o pacote <a href="https://ggplot2.tidyverse.org/">ggplot2</a> para a localidade do estado do Rio Grande do Sul.</p>
 <div id="carregando-o-arquivo-de-dados" class="section level2">
 <h2>Carregando o arquivo de dados</h2>
 <p>Uma vez que baixamos o arquivo de dados, vamos importá-lo para o <code>R</code>.</p>
@@ -31,17 +31,17 @@ mobilidade &lt;- read_csv(
 glimpse(mobilidade)</code></pre>
 <pre><code>## Rows: 284,489
 ## Columns: 11
-## $ country_region_code                                &lt;chr&gt; &quot;AE&quot;, &quot;AE&quot;, &quot;AE&quot;...
-## $ country_region                                     &lt;chr&gt; &quot;United Arab Emi...
-## $ sub_region_1                                       &lt;chr&gt; NA, NA, NA, NA, ...
-## $ sub_region_2                                       &lt;lgl&gt; NA, NA, NA, NA, ...
-## $ date                                               &lt;date&gt; 2020-02-15, 202...
-## $ retail_and_recreation_percent_change_from_baseline &lt;dbl&gt; 0, 1, -1, -2, -2...
-## $ grocery_and_pharmacy_percent_change_from_baseline  &lt;dbl&gt; 4, 4, 1, 1, 0, 1...
-## $ parks_percent_change_from_baseline                 &lt;dbl&gt; 5, 4, 5, 5, 4, 6...
-## $ transit_stations_percent_change_from_baseline      &lt;dbl&gt; 0, 1, 1, 0, -1, ...
-## $ workplaces_percent_change_from_baseline            &lt;dbl&gt; 2, 2, 2, 2, 2, 1...
-## $ residential_percent_change_from_baseline           &lt;dbl&gt; 1, 1, 1, 1, 1, 1...</code></pre>
+## $ country_region_code                                &lt;chr&gt; &quot;AE&quot;, &quot;AE&quot;, &quot;AE&quot;, &quot;…
+## $ country_region                                     &lt;chr&gt; &quot;United Arab Emirat…
+## $ sub_region_1                                       &lt;chr&gt; NA, NA, NA, NA, NA,…
+## $ sub_region_2                                       &lt;chr&gt; NA, NA, NA, NA, NA,…
+## $ date                                               &lt;date&gt; 2020-02-15, 2020-0…
+## $ retail_and_recreation_percent_change_from_baseline &lt;dbl&gt; 0, 1, -1, -2, -2, -…
+## $ grocery_and_pharmacy_percent_change_from_baseline  &lt;dbl&gt; 4, 4, 1, 1, 0, 1, 2…
+## $ parks_percent_change_from_baseline                 &lt;dbl&gt; 5, 4, 5, 5, 4, 6, 6…
+## $ transit_stations_percent_change_from_baseline      &lt;dbl&gt; 0, 1, 1, 0, -1, 1, …
+## $ workplaces_percent_change_from_baseline            &lt;dbl&gt; 2, 2, 2, 2, 2, 1, -…
+## $ residential_percent_change_from_baseline           &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1…</code></pre>
 <p>Esta função nos apresenta o número linhas e colunas do objeto, as colunas e a classe das mesmas, além de alguns valores das colunas.</p>
 </div>
 <div id="formatando-os-dados" class="section level2">
@@ -55,7 +55,7 @@ mobilidade &lt;- mobilidade %&gt;%
   gather(key = &quot;Tipo&quot;, value = &quot;Percentual&quot;, -date)</code></pre>
 <p>Note que antes de empilharmos os dados, mantivemos apenas as variáveis (colunas) que tínhamos interesse de analisarmos, utilizando a função <code>select</code>. Agora o novo objeto possui apenas três colunas:</p>
 <pre class="r"><code>mobilidade</code></pre>
-<pre><code>## # A tibble: 432 x 3
+<pre><code>## # A tibble: 432 × 3
 ##    date       Tipo                                               Percentual
 ##    &lt;date&gt;     &lt;chr&gt;                                                   &lt;dbl&gt;
 ##  1 2020-02-15 retail_and_recreation_percent_change_from_baseline          4
@@ -68,7 +68,7 @@ mobilidade &lt;- mobilidade %&gt;%
 ##  8 2020-02-22 retail_and_recreation_percent_change_from_baseline         -3
 ##  9 2020-02-23 retail_and_recreation_percent_change_from_baseline          4
 ## 10 2020-02-24 retail_and_recreation_percent_change_from_baseline        -16
-## # ... with 422 more rows</code></pre>
+## # … with 422 more rows</code></pre>
 <p>Antes de começarmos a construir o nosso gráfico, vamos formatar a variável <code>Tipo</code>:</p>
 <pre class="r"><code>mobilidade$Tipo &lt;- factor(mobilidade$Tipo,
                           labels = c(&quot;Mercearia e farmácia&quot;,
@@ -89,7 +89,7 @@ p &lt;- ggplot(data = mobilidade,
   geom_line()
 
 p</code></pre>
-<p><img src="/post/2020-05-01-mob-plot_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p><img src="staticunnamed-chunk-6-1.png" width="672" /></p>
 <p><strong>Nada mau!</strong> Mas, podemos melhorar com algumas modificações. Comecemos por uma outra apresentação (facetada) e aumentando a espessura das curvas.</p>
 <pre class="r"><code>p &lt;- ggplot(data = mobilidade,
             mapping = aes(x = date, y = Percentual, colour = Tipo)) +
@@ -98,7 +98,7 @@ p</code></pre>
   theme(legend.position = &quot;none&quot;)
 
 p</code></pre>
-<p><img src="/post/2020-05-01-mob-plot_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p><img src="staticunnamed-chunk-7-1.png" width="672" /></p>
 <p><strong>Melhor?</strong> Estamos quase lá! Agora vamos vamos arrumar aqueles pequenos detalhes que fazem toda a diferença: rótulos dos eixos, formato das datas, símbolo de percentual no eixo <span class="math inline">\(y\)</span> e uma paleta de cores diferente da padrão.</p>
 <pre class="r"><code>p &lt;- ggplot(data = mobilidade,
             mapping = aes(x = date, y = Percentual, colour = Tipo)) +
@@ -114,7 +114,7 @@ p</code></pre>
        caption = &quot;Fonte: Google Mobility (01/05/2020)&quot;)
 
 p</code></pre>
-<p><img src="/post/2020-05-01-mob-plot_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p><img src="staticunnamed-chunk-8-1.png" width="672" /></p>
 <p>Um outro detalhe que faz toda a diferença é inclusão de um preenchimento entre as curvas de mobilidade e o valor basal.</p>
 <pre class="r"><code>p &lt;- ggplot(data = mobilidade,
             mapping = aes(x = date, y = Percentual, colour = Tipo)) +
@@ -132,7 +132,7 @@ p</code></pre>
        caption = &quot;Fonte: Google Mobility (01/05/2020)&quot;)
 
 p</code></pre>
-<p><img src="/post/2020-05-01-mob-plot_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p><img src="staticunnamed-chunk-9-1.png" width="672" /></p>
 <p><strong>Pronto!</strong> Temos um gráfico de mobilidade! Infelizmente as conclusões não são muito animadoras. As curvas de tendência de mobilidade no estado do Rio Grande do Sul indicam um retorno ao valor basal (mobilidade pré-pandemia do COVID-19). Isso em conjunto com outros fatores (ausência de medidas de teste, isolamento e rastreio dos contatos dos infectados) podem resultar em um aumento acelerado dos casos de COVID-19. Nos mantenhamos alertas e avaliando os dados.</p>
 <p>Você pode gerar gráficos para outras localidades do Brasil e do mundo! Experimente também outros temas do <code>ggplot2</code> ou do pacote <code>ggthemes</code>.</p>
 <pre class="r"><code>library(ggthemes)
@@ -140,20 +140,20 @@ p</code></pre>
 p + theme_wsj() +
    theme(legend.position = &quot;none&quot;,
         axis.text.x = element_text(angle = 45, hjust = 1))</code></pre>
-<p><img src="/post/2020-05-01-mob-plot_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p><img src="staticunnamed-chunk-10-1.png" width="672" /></p>
 <pre class="r"><code>library(ggthemes)
 
 p + theme_fivethirtyeight() +
    theme(legend.position = &quot;none&quot;,
         axis.text.x = element_text(angle = 45, hjust = 1))</code></pre>
-<p><img src="/post/2020-05-01-mob-plot_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p><img src="staticunnamed-chunk-11-1.png" width="672" /></p>
 <p>Tem até estilo <strong>“Old is cool”</strong>.</p>
 <pre class="r"><code>library(ggthemes)
 
 p + theme_excel() +
    theme(legend.position = &quot;none&quot;,
         axis.text.x = element_text(angle = 45, hjust = 1))</code></pre>
-<p><img src="/post/2020-05-01-mob-plot_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p><img src="staticunnamed-chunk-12-1.png" width="672" /></p>
 <p>Depois é só salvar no formato e resolução que você desejar com a função <code>ggsave</code>!</p>
 <p>Se cuidem! Fiquem bem! E até a próxima!</p>
 </div>
