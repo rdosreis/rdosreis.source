@@ -114,11 +114,63 @@ p1</code></pre>
 p2</code></pre>
 <p><img src="staticunnamed-chunk-8-1.png" width="672" /></p>
 </div>
-<div id="gráfico-de-barras-com-fill" class="section level3">
-<h3>Gráfico de barras com fill</h3>
-</div>
-<div id="gráfico-de-barras-com-fill-mais-facet" class="section level3">
-<h3>Gráfico de barras com fill mais facet</h3>
+<div id="gráfico-de-barras-com-ylls-ylds-e-sexo" class="section level3">
+<h3>Gráfico de barras com YLLs, YLDs e sexo</h3>
+<p>Como os DALYs expressam a soma dos YLLs e YLDs, seria interessante apresentar no gráfico a contribuição de YLLs e YLDs para os DALYs de COPD. Além, disso estratificar este dado por sexo. Assim, filtramos o objeto de dados <code>gbd_copd</code> (que contém a informação completa do arquivo baixado do <em>GBD Results Tool</em>) e criamos a variável que combina os níveis da variável <code>sex</code> com os níveis da variável <code>measure</code>.</p>
+<pre class="r"><code>gbd_copd_yl_mf &lt;- gbd_copd %&gt;% 
+  filter(measure != &quot;DALYs&quot;, sex != &quot;Both&quot;) %&gt;%
+  mutate(sex = factor(x = sex),
+         sex = relevel(sex, ref = &quot;Male&quot;),
+         measure = factor(x = measure),
+         measure = relevel(measure, ref = &quot;YLLs&quot;),
+    sex_measure = interaction(sex, measure, sep = &quot;, &quot;))</code></pre>
+<p>A estrutura do gráfico é parecida com o gráfico de barras simples. Devemos apenas acrescentar o elemento <code>fill</code> aos elementos estéticos do gráfico (função <code>aes</code>).</p>
+<pre class="r"><code>p3 &lt;- ggplot(data = gbd_copd_yl_mf,
+             mapping = aes(x = age, y = val, fill = sex_measure)) +
+  geom_bar(stat = &quot;identity&quot;, width = 0.6) +
+  scale_y_continuous(breaks = c(0, 5000000, 10000000)) +
+  labs(x = &quot;Age group&quot;, y = &quot;DALYs&quot;, fill = &quot;&quot;) +
+  theme_bw() +
+  theme(
+    axis.text.x = element_text(hjust = 1,
+                               angle = 45,
+                               size = 8))
+p3</code></pre>
+<p><img src="staticunnamed-chunk-10-1.png" width="672" /></p>
+<p>Sempre podemos especificar um outro tema, ou outra paleta de cores, assim como configurar a posição da legenda do gráfico.</p>
+<pre class="r"><code>library(wesanderson)
+
+p3 &lt;- ggplot(data = gbd_copd_yl_mf,
+             mapping = aes(x = age, y = val, fill = sex_measure)) +
+  geom_bar(stat = &quot;identity&quot;, width = 0.6) +
+  scale_y_continuous(breaks = c(0, 5000000, 10000000)) +
+  scale_fill_manual(values = rev(wes_palette(n = 4, name = &quot;GrandBudapest2&quot;))) +
+  labs(x = &quot;Age group&quot;, y = &quot;DALYs&quot;, fill = &quot;&quot;) +
+  theme_classic() +
+  theme(
+    legend.position = &quot;bottom&quot;,
+    axis.text.x = element_text(hjust = 1,
+                               angle = 45,
+                               size = 8))
+p3</code></pre>
+<p><img src="staticunnamed-chunk-11-1.png" width="672" /></p>
+<p>Uma alternativa a este último gráfico é utilizar a variável <code>measure</code> no argumento <code>fill</code> e a variável <code>sex</code> com a função <code>facet_grid</code>.</p>
+<pre class="r"><code>p4 &lt;- ggplot(data = gbd_copd_yl_mf,
+             mapping = aes(x = age, y = val, fill = measure)) +
+  geom_bar(stat = &quot;identity&quot;, width = 0.6) +
+  # scale_y_continuous(breaks = c(0, 5000000, 10000000)) +
+  scale_fill_manual(values = rev(wes_palette(n = 4, name = &quot;GrandBudapest2&quot;))) +
+  labs(x = &quot;Age group&quot;, y = &quot;DALYs&quot;, fill = &quot;&quot;) +
+  theme_classic() +
+  theme(
+    legend.position = &quot;bottom&quot;,
+    axis.text.x = element_text(hjust = 1,
+                               angle = 45,
+                               size = 8)) +
+  facet_grid( ~ sex)
+p4</code></pre>
+<p><img src="staticunnamed-chunk-12-1.png" width="672" /></p>
+<p>O resultado é um painel com dois gráficos, um para cada nível da variável <code>sex</code>. Depois é só salvar no formato e resolução que você desejar com a função <a href="https://ggplot2.tidyverse.org/reference/ggsave.html"><code>ggsave</code></a>!</p>
 </div>
 </div>
 <div class="footnotes footnotes-end-of-document">
