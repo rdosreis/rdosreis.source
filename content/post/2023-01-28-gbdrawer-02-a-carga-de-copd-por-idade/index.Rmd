@@ -1,5 +1,5 @@
 ---
-title: GBDrawer 02 - A carga de COPD por idade
+title: GBDraweR 02 - A carga de COPD por idade
 author: Rodrigo Citton P. dos Reis
 date: '2023-01-28'
 slug: gbdrawer-02-a-carga-de-copd-por-idade
