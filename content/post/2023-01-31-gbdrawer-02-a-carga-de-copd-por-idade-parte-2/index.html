@@ -1,0 +1,191 @@
+---
+title: GBDrawer 03 - A carga de COPD por idade (Parte 2)
+author: rdosreis
+date: '2023-02-04'
+categories:
+  - blog
+tags:
+  - GBD
+  - plot
+slug: gbdrawer-02-a-carga-de-copd-por-idade-parte-2
+---
+
+
+
+<p>No <a href="https://rdosreis.github.io/2023/01/28/gbdrawer-02-a-carga-de-copd-por-idade/">último <em>post</em></a> discutimos a construção de gráficos para apresentação da carga de <strong>doença pulmonar obstrutiva crônica</strong> (<em>chronic obstructive pulmonary disease</em>, COPD). Utilizamos gráficos de barras para descrever a distribuição de DALYs por faixa etária. Neste novo <em>post</em> continuaremos a discutir este exemplo, apresentando um <strong>gráfico de pirâmide</strong> como alternativa aos gráficos de barras simples.</p>
+<div id="gráfico-de-pirâmide" class="section level2">
+<h2>Gráfico de pirâmide</h2>
+<p>O gráfico de pirâmide é um gráfico muito utilizado para apresentar a distribuição etária de uma população por gênero.</p>
+<p><img src="images/22_pnadAtualizacao_jovens_002_piramideEtaria.png" style="width:80.0%;height:80.0%" /></p>
+<p>É um gráfico bastante útil para se fazer comparações entre anos/períodos e avaliar mudanças no padrão etário de uma população ao longo do tempo. Vamos construir este gráfico para apresentar a distribuição de DALYs de COPD global por idade e gênero.</p>
+</div>
+<div id="gráfico-de-dalys-por-faixa-etária-ao-longo-dos-anos" class="section level2">
+<h2>Gráfico de DALYs por faixa etária ao longo dos anos</h2>
+<div id="extração-dos-dados" class="section level3">
+<h3>Extração dos dados</h3>
+<p>Mais uma vez, utilizamos a ferramenta <em>GBD Results Tool</em> do <a href="http://ghdx.healthdata.org/gbd‐results‐tool">Global Health Data Exchange</a> do <strong>GBD 2019</strong> para obter os dados sobre a carga global de COPD. Para este exemplo, a seguinte configuração foi especificada:</p>
+<div class="figure">
+<img src="images/gbd_copd_90-19.png" style="width:80.0%;height:80.0%" alt="" />
+<p class="caption">Global Burden of Disease Study 2019 (GBD 2019) Results. Seattle, United States: Institute for Health Metrics and Evaluation (IHME), 2020. Available from <a href="https://vizhub.healthdata.org/gbd-results/" class="uri">https://vizhub.healthdata.org/gbd-results/</a>.</p>
+</div>
+</div>
+<div id="carregando-os-dados" class="section level3">
+<h3>Carregando os dados</h3>
+<p>Uma vez que baixamos os dados, vamos carregá-los para o <code>R</code>.</p>
+<pre class="r"><code>library(readr)
+
+gbd_copd &lt;- read_csv(file = here::here(&quot;data&quot;,
+                                &quot;IHME-GBD_2019_DATA-4fea7ca1-1.csv&quot;))</code></pre>
+<p>De acordo com a configuração da nossa consulta (no <em>GBD Results Tool</em>) temos informação para valores de DALYs, em ambos os sexos e para cada ano de 1990 até 2019.</p>
+<pre class="r"><code>gbd_copd</code></pre>
+<pre><code>## # A tibble: 1,380 × 10
+##    measure           locat…¹ sex   age   cause metric  year    val  upper  lower
+##    &lt;chr&gt;             &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+##  1 DALYs (Disabilit… Global  Male  0-6 … Chro… Number  1990 0      0      0     
+##  2 DALYs (Disabilit… Global  Fema… 0-6 … Chro… Number  1990 0      0      0     
+##  3 DALYs (Disabilit… Global  Male  7-27… Chro… Number  1990 0      0      0     
+##  4 DALYs (Disabilit… Global  Fema… 7-27… Chro… Number  1990 0      0      0     
+##  5 DALYs (Disabilit… Global  Male  28-3… Chro… Number  1990 5.99e2 7.42e2 4.32e2
+##  6 DALYs (Disabilit… Global  Fema… 28-3… Chro… Number  1990 6.80e2 8.43e2 5.00e2
+##  7 DALYs (Disabilit… Global  Male  1-4 … Chro… Number  1990 1.66e5 3.77e5 1.17e5
+##  8 DALYs (Disabilit… Global  Fema… 1-4 … Chro… Number  1990 2.01e5 3.51e5 6.55e4
+##  9 DALYs (Disabilit… Global  Male  5-9 … Chro… Number  1990 8.36e4 1.00e5 7.04e4
+## 10 DALYs (Disabilit… Global  Fema… 5-9 … Chro… Number  1990 8.30e4 1.03e5 6.13e4
+## # … with 1,370 more rows, and abbreviated variable name ¹​location</code></pre>
+</div>
+<div id="formatando-os-dados" class="section level3">
+<h3>Formatando os dados</h3>
+<p>Como no gráfico de barras simples, vamos formatar os dados antes de gerar o gráfico.</p>
+<pre class="r"><code>gbd_copd$age &lt;- factor(
+  x = gbd_copd$age,
+  levels = unique(gbd_copd$age),
+  labels = c(
+    c(&quot;Early Neonatal&quot;, &quot;Late Neonatal&quot;, &quot;Post Neonatal&quot;),
+    unique(gbd_copd$age)[4:19],
+    paste(unique(gbd_copd$age)[20:22], &quot;years&quot;),
+    unique(gbd_copd$age)[23]
+  )
+)</code></pre>
+<p>Para produzir um gráfico de pirâmide, em que as barras horizontais têm a origem no valor zero do eixo <span class="math inline">\(x\)</span> e sentidos opostos para cada nível da variável <code>sex</code> (da esquerda para direita para DALYs do sexo feminino e da direita para esquerda para DALYs do sexo masculino), precisamos multiplicar os valores de DALYs para o sexo masculino por <span class="math inline">\(-1\)</span>.</p>
+<pre class="r"><code>gbd_copd$val[gbd_copd$sex == &quot;Male&quot;] &lt;-
+  -gbd_copd$val[gbd_copd$sex == &quot;Male&quot;]</code></pre>
+</div>
+<div id="dalys-de-copd-por-idade-e-sexo-2019" class="section level3">
+<h3>DALYs de COPD por idade e sexo: 2019</h3>
+<p>Vamos filtrar os dados referentes ao ano de 2019 utilizando a função <code>filter</code> do pacote <a href="https://dplyr.tidyverse.org/"><code>dplyr</code></a><a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>.</p>
+<pre class="r"><code>library(dplyr)
+
+gbd_copd_19 &lt;- gbd_copd %&gt;% 
+  filter (year == 2019)</code></pre>
+<p>Agora, vamos utilizar o pacote <code>ggplot2</code> para construir o gráfico de pirâmide. O primeiro passo é construir um gráfico de barras.</p>
+<pre class="r"><code>library(ggplot2)
+
+p &lt;- ggplot(data = gbd_copd_19,
+            mapping = aes(x = age,
+                          y = val,
+                          fill = sex)) +
+  geom_bar(stat = &quot;identity&quot;) + 
+  labs(x = &quot;Age group&quot;, y = &quot;DALYs&quot;, fill = &quot;Sex&quot;,
+       title = &quot;Carga global de COPD. DALYs por faixa etária, ano: 2019&quot;,
+       caption = &quot;Global Burden of Disease Study 2019 (GBD 2019) Results. Seattle, United States: Institute for Health Metrics and Evaluation (IHME), 2020. Available from https://vizhub.healthdata.org/gbd-results/.&quot;) +
+  theme_minimal() +
+  theme(legend.position = &quot;bottom&quot;)
+p</code></pre>
+<p><img src="staticunnamed-chunk-6-1.png" width="672" /></p>
+<p>Note que o gráfico gerado se parece muito com o resultado esperado, porém as barras estão na posição vertical e os valores de DALYs para o sexo masculino são mostrados com o sinal negativo. Vamos utilizar a função <code>coord_flip</code> para inverter os eixos do gráfico.</p>
+<pre class="r"><code>p &lt;- ggplot(data = gbd_copd_19,
+            mapping = aes(x = age,
+                          y = val,
+                          fill = sex)) +
+  geom_bar(stat = &quot;identity&quot;) + 
+  labs(x = &quot;Age group&quot;, y = &quot;DALYs&quot;, fill = &quot;Sex&quot;,
+       title = &quot;Carga global de COPD. DALYs por faixa etária, ano: 2019&quot;,
+       caption = &quot;Global Burden of Disease Study 2019 (GBD 2019) Results. Seattle, United States: Institute for Health Metrics and Evaluation (IHME), 2020. 
+       Available from https://vizhub.healthdata.org/gbd-results/.&quot;) +
+  theme_minimal() +
+  theme(legend.position = &quot;bottom&quot;) +
+  coord_flip()
+p</code></pre>
+<p><img src="staticunnamed-chunk-7-1.png" width="672" /></p>
+<p>Ainda, podemos modificar a paleta de cores e formatar os labels do eixo horizontal.</p>
+<pre class="r"><code>library(RColorBrewer)
+
+p &lt;- ggplot(data = gbd_copd_19,
+            mapping = aes(x = age,
+                          y = val,
+                          fill = sex)) +
+  geom_bar(stat = &quot;identity&quot;) + 
+  scale_y_continuous(labels = abs,
+                     limits = 
+                       max(max(gbd_copd_19$val, na.rm = TRUE),
+                           abs(min(gbd_copd_19$val))) * c(-1,1)) +
+  scale_fill_brewer(palette = &quot;Set2&quot;) +
+  guides(fill = guide_legend(reverse = TRUE)) +
+  labs(x = &quot;Age group&quot;, y = &quot;DALYs&quot;, fill = &quot;Sex&quot;,
+       title = &quot;Carga global de COPD. DALYs por faixa etária, ano: 2019&quot;,
+       caption = &quot;Global Burden of Disease Study 2019 (GBD 2019) Results. Seattle, United States: Institute for Health Metrics and Evaluation (IHME), 2020. Available from https://vizhub.healthdata.org/gbd-results/.&quot;) +
+  theme_minimal() +
+  theme(legend.position = &quot;bottom&quot;) +
+  coord_flip()
+p</code></pre>
+<p><img src="staticunnamed-chunk-8-1.png" width="672" /></p>
+</div>
+<div id="dalys-de-copd-por-idade-e-sexo-1990---2019" class="section level3">
+<h3>DALYs de COPD por idade e sexo: 1990 - 2019</h3>
+<p>Para gerar o gráfico da distribuição de DALYs de COPD global por faixa etária e sexo entre os anos de 1990 e 2019, podemos utilizar o mesmo código apresentado na seção anterior com o objeto de dados original (<code>gbd_copd</code>) e a função <code>facet_wrap</code> com a variável <code>year</code>.</p>
+<pre class="r"><code>p &lt;- ggplot(data = gbd_copd,
+            mapping = aes(x = age,
+                          y = val,
+                          fill = sex)) +
+  geom_bar(stat = &quot;identity&quot;) +
+  scale_y_continuous(labels = abs,
+                     limits =
+                       max(max(gbd_copd$val, na.rm = TRUE),
+                           abs(min(gbd_copd$val))) * c(-1, 1)) +
+  scale_fill_brewer(palette = &quot;Set2&quot;) +
+  guides(fill = guide_legend(reverse = TRUE)) +
+  labs(
+    x = &quot;Age group&quot;,
+    y = &quot;DALYs&quot;,
+    fill = &quot;Sex&quot;,
+    title = &quot;Carga global de COPD. DALYs por faixa etária&quot;,
+    caption = &quot;Global Burden of Disease Study 2019 (GBD 2019) Results. Seattle, United States: Institute for Health Metrics and Evaluation (IHME), 2020. Available from https://vizhub.healthdata.org/gbd-results/.&quot;) +
+  theme_minimal() +
+  theme(legend.position = &quot;bottom&quot;) +
+  coord_flip()
+
+p + facet_wrap(~ year)</code></pre>
+<p><img src="staticunnamed-chunk-9-1.png" width="672" /></p>
+<p>Uma forma mais dinâmica para acompanharmos as mudanças no gráfico ao longo do tempo pode ser obtida através de uma <strong>animação</strong>. O pacote <a href="https://gganimate.com/index.html"><code>gganimate</code></a> possui funções que aproveitam o código do gráfico <code>ggplot2</code>.</p>
+<pre class="r"><code>library(gganimate)
+
+p &lt;- ggplot(data = gbd_copd,
+            mapping = aes(x = age,
+                          y = val,
+                          fill = sex)) +
+  geom_bar(stat = &quot;identity&quot;) + 
+  scale_y_continuous(labels = abs,
+                     limits = 
+                       max(max(gbd_copd$val, na.rm = TRUE),
+                           abs(min(gbd_copd$val))) * c(-1,1)) +
+  scale_fill_brewer(palette = &quot;Set2&quot;) +
+  guides(fill = guide_legend(reverse = TRUE)) +
+  labs(x = &quot;Age group&quot;, y = &quot;DALYs&quot;, fill = &quot;Sex&quot;,
+       title = &quot;Carga global de COPD. DALYs por faixa etária, ano: {as.integer(frame_time)}&quot;,
+       caption = &quot;Global Burden of Disease Study 2019 (GBD 2019) Results. Seattle, United States: Institute for Health Metrics and Evaluation (IHME), 2020. Available from https://vizhub.healthdata.org/gbd-results/.&quot;) +
+  theme_minimal() +
+  theme(legend.position = &quot;bottom&quot;) +
+  coord_flip()
+
+p + transition_time(year) +
+  ease_aes(&#39;linear&#39;)</code></pre>
+<p><img src="staticunnamed-chunk-10-1.gif" /><!-- --></p>
+<p>Lembre que para obtermos o gráfico dinâmico necessitamos de um ambiente que permita o resultado dinâmico, como o ambiente <code>html</code>.</p>
+</div>
+</div>
+<div class="footnotes footnotes-end-of-document">
+<hr />
+<ol>
+<li id="fn1"><p>Para uma introdução ao operador <em>pipe</em> (<code>%&gt;%</code>), veja: <a href="https://magrittr.tidyverse.org/reference/pipe.html" class="uri">https://magrittr.tidyverse.org/reference/pipe.html</a><a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>

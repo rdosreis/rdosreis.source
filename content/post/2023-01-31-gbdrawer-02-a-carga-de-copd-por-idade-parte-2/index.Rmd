@@ -1,5 +1,5 @@
 ---
-title: GBDrawer 02 - A carga de COPD por idade (Parte 2)
+title: GBDrawer 03 - A carga de COPD por idade (Parte 2)
 author: rdosreis
 date: '2023-02-04'
 categories:
@@ -88,6 +88,8 @@ gbd_copd$val[gbd_copd$sex == "Male"] <-
 Vamos filtrar os dados referentes ao ano de 2019 utilizando a função `filter` do pacote [`dplyr`](https://dplyr.tidyverse.org/)^[Para uma introdução ao operador *pipe* (`%>%`), veja: https://magrittr.tidyverse.org/reference/pipe.html].
 
 ```{r, echo=TRUE, warning=FALSE, message=FALSE}
+
+library(dplyr)
 
 gbd_copd_19 <- gbd_copd %>% 
   filter (year == 2019)
