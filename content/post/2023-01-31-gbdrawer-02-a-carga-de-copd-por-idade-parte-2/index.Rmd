@@ -32,7 +32,7 @@ O gráfico de pirâmide é um gráfico muito utilizado para apresentar a distrib
 
 Mais uma vez, utilizamos a ferramenta *GBD Results Tool* do [Global Health Data Exchange](http://ghdx.healthdata.org/gbd‐results‐tool) do **GBD 2019** para obter os dados sobre a carga global de COPD. Para este exemplo, a seguinte configuração foi especificada:
 
-![Global Burden of Disease Study 2019 (GBD 2019) Results. Seattle, United States: Institute for Health Metrics and Evaluation (IHME), 2020. Available from https://vizhub.healthdata.org/gbd-results/.](images/gbd_copd_90-19.png){width=80% height=80%}
+![Global Burden of Disease Study 2019 (GBD 2019) Results. Seattle, United States: Institute for Health Metrics and Evaluation (IHME), 2020. Available from https://vizhub.healthdata.org/gbd-results/.](images/gbd_copd_90-19.png){width=40% height=50%}
 
 ### Carregando os dados
 
@@ -196,7 +196,7 @@ p + facet_wrap(~ year)
 
 Uma forma mais dinâmica para acompanharmos as mudanças no gráfico ao longo do tempo pode ser obtida através de uma **animação**. O pacote [`gganimate`](https://gganimate.com/index.html) possui funções que aproveitam o código do gráfico `ggplot2`.
 
-```{r, echo=TRUE, warning=FALSE, message=FALSE}
+```{r, echo=TRUE, warning=FALSE, message=FALSE, out.width="90%", out.height="90%"}
 
 library(gganimate)
 

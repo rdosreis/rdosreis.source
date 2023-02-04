@@ -25,7 +25,7 @@ slug: gbdrawer-02-a-carga-de-copd-por-idade-parte-2
 <h3>Extração dos dados</h3>
 <p>Mais uma vez, utilizamos a ferramenta <em>GBD Results Tool</em> do <a href="http://ghdx.healthdata.org/gbd‐results‐tool">Global Health Data Exchange</a> do <strong>GBD 2019</strong> para obter os dados sobre a carga global de COPD. Para este exemplo, a seguinte configuração foi especificada:</p>
 <div class="figure">
-<img src="images/gbd_copd_90-19.png" style="width:80.0%;height:80.0%" alt="" />
+<img src="images/gbd_copd_90-19.png" style="width:40.0%;height:50.0%" alt="" />
 <p class="caption">Global Burden of Disease Study 2019 (GBD 2019) Results. Seattle, United States: Institute for Health Metrics and Evaluation (IHME), 2020. Available from <a href="https://vizhub.healthdata.org/gbd-results/" class="uri">https://vizhub.healthdata.org/gbd-results/</a>.</p>
 </div>
 </div>
@@ -179,7 +179,7 @@ p &lt;- ggplot(data = gbd_copd,
 
 p + transition_time(year) +
   ease_aes(&#39;linear&#39;)</code></pre>
-<p><img src="staticunnamed-chunk-10-1.gif" /><!-- --></p>
+<p><img src="staticunnamed-chunk-10-1.gif" width="90%" height="90%" /></p>
 <p>Lembre que para obtermos o gráfico dinâmico necessitamos de um ambiente que permita o resultado dinâmico, como o ambiente <code>html</code>.</p>
 </div>
 </div>
