@@ -1,0 +1,151 @@
+---
+date: "2023-02-07"
+title: "Publicações e Orientações"
+author: rodrigo citton p. dos reis
+disable_comments: true
+output: 
+  md_document:
+      variant: "markdown"
+---
+
+```{r, echo=FALSE}
+
+printList <- function(x, out.format = knitr::opts_knit$get("out.format"),
+                      environment = "itemize",
+                      marker = NULL) {
+  if (out.format == "markdown") {
+    if (!missing(environment) || !missing(marker)) {
+      warning("Ignoring arguments that are not supported for markdown output.")
+    }
+    out <- sprintf("\n\n%s\n \n", paste("*", x, collapse = "\n"))
+  } else {
+    if (out.format == "latex") {
+      itemCommand <- if (missing(marker)) {
+        "\\item"
+      } else {
+        sprintf("\\item[%s]", marker)
+      }
+      listEnv <- c(
+        sprintf("\\begin{%s}\n", environment),
+        sprintf("\n\\end{%s}\n", environment))
+      out <- paste(itemCommand, x, collapse = "\n")
+      out <- sprintf("%s%s%s", listEnv[1], out, listEnv[2])
+    } else {
+      stop("Output format not supported.")
+    }
+  }
+  return(knitr::asis_output(out))
+}
+
+```
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+# ----------------------------
+# Pacotes
+# ----------------------------
+
+# library(scholar)
+library(dplyr)
+library(tidyr)
+# library(knitr)
+# library(ggplot2)
+
+library(getLattes)
+library(xml2)
+library(stringi)
+
+# ----------------------------
+# Carrega dados (currículo)
+# ----------------------------
+
+# scholar_id <- "E54JLsAAAAAJ" 
+# pubs <- scholar::get_publications(id = scholar_id,
+#                                   sortby = "year")
+
+curriculo <- xml2::read_xml(here::here("data",
+                                       "lattes",
+                                       "3867312117732056.zip"))
+
+# ----------------------------
+# Extrai e formata dados:
+#   artigos publicados
+# ----------------------------
+
+# pubs <- pubs %>%
+#   arrange(desc(year))
+
+pubs <- getArtigosPublicados(curriculo)
+
+pubs <- pubs %>%
+  filter(natureza == "COMPLETO") %>% 
+  arrange(desc(ano_do_artigo))
+
+pubs$nome_para_citacao <- NA
+
+for (i in 1:length(pubs$natureza)){
+  pubs$nome_para_citacao[i] <- paste(
+    gsub(";.*$", "", unlist(pubs$autores[[i]][, "nome_para_citacao"])), collapse = "; ")
+  if (stri_sub(pubs$nome_para_citacao[i], -1, -1) != "."){
+    pubs$nome_para_citacao[i] <- paste0(pubs$nome_para_citacao[i], ".")
+  }
+  if (pubs$home_page_do_trabalho[i] == ""){
+    pubs$home_page_do_trabalho[i] <- paste0("[doi:", pubs$doi[i], "]")
+  }
+}
+
+# pubs_paste <- paste0(pubs$author,". " ,
+#                      "**",pubs$title, "**. ",
+#                      "*", pubs$journal, "*. ",
+#                      pubs$year, "; ",
+#                      pubs$number, ".")
+
+pubs_paste <- paste0(pubs$nome_para_citacao, " " ,
+                     "**",pubs$titulo_do_artigo, "**. ",
+                     "*", pubs$titulo_do_periodico_ou_revista, "*. ",
+                     pubs$ano_do_artigo, "; ",
+                     pubs$volume, "(", pubs$serie, "), ",
+                     pubs$pagina_inicial, "-", pubs$pagina_final,
+                     ifelse(pubs$home_page_do_trabalho != "",
+                            paste0(". ", pubs$home_page_do_trabalho, "."),
+                            "."))
+
+# ----------------------------
+# Extrai e formata dados:
+#   orientações mestrado
+# ----------------------------
+
+mestrado <- getOrientacoesMestrado(curriculo)
+
+mestrado <- mestrado %>% 
+  arrange(desc(ano)) %>% 
+  mutate(tipo_de_orientacao = case_when(
+    tipo_de_orientacao == "CO_ORIENTADOR" ~ "Coorientador",
+    tipo_de_orientacao == "ORIENTADOR_PRINCIPAL" ~ "Orientador")
+    )
+
+
+mestrado_paste <- paste0(mestrado$nome_do_orientado, ". ",
+                         "**", mestrado$titulo, "**. ",
+                         mestrado$ano, ". ", mestrado$nome_do_curso, " - ",
+                         mestrado$nome_da_instituicao, " (", mestrado$tipo_de_orientacao, ").")
+
+```
+
+## Publicações
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+printList(pubs_paste)
+
+```
+
+## Orientações
+
+### Dissertação de mestrado
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+printList(mestrado_paste)
+
+```

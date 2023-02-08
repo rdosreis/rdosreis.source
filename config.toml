@@ -14,6 +14,9 @@ publishDir = "../rdosreis.github.io"
     name = "sobre"
     url = "/about/"
 [[menu.main]]
+    name = "trabalhos acadêmicos"
+    url = "/pubs/"
+[[menu.main]]
     name = "github"
     url = "https://github.com/rdosreis"
 [[menu.main]]
